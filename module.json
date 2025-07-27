@@ -7,10 +7,13 @@
     "verified": "13"
   },
   "description": "Набор кастомных листов Журнала и небольших фишек оформления для системы WoD20./A set of custom Journal sheets and small cosmetic improvements for the WoD20 system.",
+  "manifest": "???",
+  "download": "???",
   "authors": [
     {
       "name": "Kersares",
       "discord": "kersares",
+      "url": "https://github.com/Kersares/journal-wod",
       "flags": {}
     },
     {
