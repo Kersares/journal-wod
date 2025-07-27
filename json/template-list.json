@@ -1,0 +1,190 @@
+{
+  "images": {
+    "title": {
+      "en": "Images",
+      "ru": "Картинки"
+    },
+    "items": {
+      "image-left": {
+        "title": {
+          "en": "Image Left",
+          "ru": "Картинка слева"
+        }
+      },
+      "image-right": {
+        "title": {
+          "en": "Image Right",
+          "ru": "Картинка справа"
+        }
+      },
+      "picture-under-the-text": {
+        "title": {
+          "en": "Picture Under The Text",
+          "ru": "Картинка под текстом"
+        }
+      }
+    }
+  },
+  "texts": {
+    "title": {
+      "en": "Texts",
+      "ru": "Тексты"
+    },
+    "items": {
+      "text-float-right": {
+        "title": {
+          "en": "Text Float Right",
+          "ru": "Врезка текста справа"
+        }
+      },
+      "text-float-left": {
+        "title": {
+          "en": "Text Float Left",
+          "ru": "Врезка текста слева"
+        }
+      },
+      "text-float-image-right": {
+        "title": {
+          "en": "Text Float Above Image Right",
+          "ru": "Врезка текста с картинкой справа"
+        }
+      },
+      "text-float-image-left": {
+        "title": {
+          "en": "Text Float Above Image Left",
+          "ru": "Врезка текста с картинкой слева"
+        }
+      },
+      "tooltip": {
+        "title": {
+          "en": "Tooltip",
+          "ru": "Подсказка"
+        }
+      },
+      "spoiler": {
+        "title": {
+          "en": "Spoiler",
+          "ru": "Спойлер"
+        }
+      },
+      "quote": {
+        "title": {
+          "en": "Quote",
+          "ru": "Цитата"
+        }
+      },
+      "table": {
+        "title": {
+          "en": "Table",
+          "ru": "Таблица"
+        }
+      }
+    }
+  },
+  "frames": {
+    "title": {
+      "en": "Frames",
+      "ru": "Рамки"
+    },
+    "items": {
+      "frame-icon": {
+        "title": {
+          "en": "Frame with icon",
+          "ru": "Инфоблок с иконкой"
+        }
+      },
+      "frame-corner": {
+        "title": {
+          "en": "Frame with corner",
+          "ru": "Инфоблок с уголками"
+        }
+      },
+      "frame-scroll": {
+        "title": {
+          "en": "Frame scroll",
+          "ru": "Инфоблок со скроллом"
+        }
+      },
+      "image-border-double": {
+        "title": {
+          "en": "Image Border Double",
+          "ru": "Рамка двойная"
+        }
+      },
+      "image-border-shadow": {
+        "title": {
+          "en": "Image Border Shadow",
+          "ru": "Рамка с тенью"
+        }
+      },
+      "image-border-rounded": {
+        "title": {
+          "en": "Image Border Rounded",
+          "ru": "Рамка закругленная"
+        }
+      },
+      "frame-old-photo": {
+        "title": {
+          "en": "Frame Old Photo",
+          "ru": "Рамка старое фото"
+        }
+      }
+    }
+  },
+  "others": {
+    "title": {
+      "en": "Others",
+      "ru": "Другое"
+    },
+    "items": {
+      "other-backcolor": {
+        "title": {
+          "en": "Back and color",
+          "ru": "Фон и цвет"
+        }
+      },
+      "other-terminal": {
+        "title": {
+          "en": "Terminal",
+          "ru": "Терминал"
+        }
+      },
+      "other-contract": {
+        "title": {
+          "en": "Contract",
+          "ru": "Контракт"
+        }
+      },
+      "other-watcher": {
+        "title": {
+          "en": "Watcher",
+          "ru": "Слежка"
+        }
+      },
+      "other-omen": {
+        "title": {
+          "en": "Omen",
+          "ru": "Знамения"
+        }
+      },
+      "other-madness": {
+        "title": {
+          "en": "Madness",
+          "ru": "Безумие"
+        }
+      },
+      "other-radar": {
+        "title": {
+          "en": "Radar",
+          "ru": "Радар"
+        }
+      },
+      "other-neonsing": {
+        "title": {
+          "en": "Neon Sing",
+          "ru": "Неоновая вывеска"
+        }
+      }
+    }
+  }
+}
