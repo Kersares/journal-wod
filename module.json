@@ -1,0 +1,83 @@
+{
+  "id": "journal-wod",
+  "title": "Journal WoD",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "13"
+  },
+  "description": "Набор кастомных листов Журнала и небольших фишек оформления для системы WoD20./A set of custom Journal sheets and small cosmetic improvements for the WoD20 system.",
+  "authors": [
+    {
+      "name": "Kersares",
+      "discord": "kersares",
+      "flags": {}
+    },
+    {
+      "name": "Shein",
+      "discord": "franky_malk",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "scripts/journal-wod.js"
+  ],
+  "styles": [
+    "styles/journal-wod.css",
+    "styles/border.css",
+    "styles/other-tools.css",
+    "styles/fix5e.css",
+    "styles/vampire-journal.css",
+    "styles/werewolf-journal.css",
+    "styles/changeling-journal.css",
+    "styles/mage-journal.css",
+    "styles/hunter-journal.css",
+    "styles/demon-journal.css",
+    "styles/wraith-journal.css",
+    "styles/generalwod-journal.css",
+    "styles/east-journal.css",
+    "styles/wildwest-journal.css",
+    "styles/darkages-journal.css",
+    "styles/darkcuprum-journal.css",
+    "styles/umbra-journal.css",
+    "styles/aurora-journal.css",
+    "fonts/fontssheet.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    },
+    {
+      "lang": "ru",
+      "name": "Russian",
+      "path": "lang/ru.json",
+      "flags": {}
+    }
+  ],
+  "packs": [
+    {
+      "name": "manual-wod-journal",
+      "label": "Manual/Инструкция",
+      "path": "packs/manual-wod-journal",
+      "type": "JournalEntry",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "🧰 Manual/Инструкция",
+      "color": "#003a00",
+      "sorting": "m",
+      "packs": [
+        "manual-wod-journal"
+      ],
+      "folders": []
+    }
+  ]
+}

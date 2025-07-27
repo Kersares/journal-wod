@@ -1,0 +1,75 @@
+body {
+    --list-journal-back-background:
+        url(../assets/Sheets/denim075.png);       
+}
+
+.sheet.journal-entry.aurora-journal .window-content,
+.sheet.journal-entry.changeling-journal .window-content,
+.sheet.journal-entry.darkages-journal .window-content,
+.sheet.journal-entry.darkcuprum-journal .window-content,
+.sheet.journal-entry.demon-journal .window-content,
+.sheet.journal-entry.east-journal .window-content,
+.sheet.journal-entry.generalwod-journal .window-content,
+.sheet.journal-entry.hunter-journal .window-content,
+.sheet.journal-entry.mage-journal .window-content,
+.sheet.journal-entry.umbra-journal .window-content,
+.sheet.journal-entry.vampire-journal .window-content,
+.sheet.journal-entry.werewolf-journal .window-content,
+.sheet.journal-entry.wildwest-journal .window-content,
+.sheet.journal-entry.wraith-journal .window-content {
+    background: transparent;
+}
+
+.app.journal-entry.aurora-journal .journal-entry-content,
+.app.journal-entry.changeling-journal .journal-entry-content,
+.app.journal-entry.darkages-journal .journal-entry-content,
+.app.journal-entry.darkcuprum-journal .journal-entry-content,
+.app.journal-entry.demon-journal .journal-entry-content,
+.app.journal-entry.east-journal .journal-entry-content,
+.app.journal-entry.generalwod-journal .journal-entry-content,
+.app.journal-entry.hunter-journal .journal-entry-content,
+.app.journal-entry.mage-journal .journal-entry-content,
+.app.journal-entry.umbra-journal .journal-entry-content,
+.app.journal-entry.vampire-journal .journal-entry-content,
+.app.journal-entry.werewolf-journal .journal-entry-content,
+.app.journal-entry.wildwest-journal .journal-entry-content,
+.app.journal-entry.wraith-journal .journal-entry-content {
+    background-color: transparent;
+    background-blend-mode: transparent;
+}
+
+.sheet.journal-entry.combat-sidebar.aurora-journal .combat-tracker-header,
+.sheet.journal-entry.combat-sidebar.changeling-journal .combat-tracker-header,
+.sheet.journal-entry.combat-sidebar.darkages-journal .combat-tracker-header,
+.sheet.journal-entry.combat-sidebar.darkcuprum-journal .combat-tracker-header,
+.sheet.journal-entry.combat-sidebar.demon-journal .combat-tracker-header,
+.sheet.journal-entry.combat-sidebar.east-journal .combat-tracker-header,
+.sheet.journal-entry.combat-sidebar.generalwod-journal .combat-tracker-header,
+.sheet.journal-entry.combat-sidebar.hunter-journal .combat-tracker-header,
+.sheet.journal-entry.combat-sidebar.mage-journal .combat-tracker-header,
+.sheet.journal-entry.combat-sidebar.umbra-journal .combat-tracker-header,
+.sheet.journal-entry.combat-sidebar.vampire-journal .combat-tracker-header,
+.sheet.journal-entry.combat-sidebar.werewolf-journal .combat-tracker-header,
+.sheet.journal-entry.combat-sidebar.wildwest-journal .combat-tracker-header,
+.sheet.journal-entry.combat-sidebar.wraith-journal .combat-tracker-header,
+.directory .directory-header {
+    border-bottom: none;
+    background: none;
+}
+
+.sheet.journal-entry.app.changeling-journal,
+.sheet.journal-entry.app.darkages-journal,
+.sheet.journal-entry.app.darkcuprum-journal,
+.sheet.journal-entry.app.demon-journal,
+.sheet.journal-entry.app.east-journal,
+.sheet.journal-entry.app.generalwod-journal,
+.sheet.journal-entry.app.hunter-journal,
+.sheet.journal-entry.app.mage-journal,
+.sheet.journal-entry.app.vampire-journal,
+.sheet.journal-entry.app.werewolf-journal,
+.sheet.journal-entry.app.wildwest-journal,
+.sheet.journal-entry.app.wraith-journal {
+    background-color: transparent;
+    background-blend-mode: transparent;
+    background: var(--list-journal-back-background) repeat;
+}

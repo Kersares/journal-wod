@@ -1,0 +1,793 @@
+@font-face {
+    font-family: "umbraheading";
+    src: url("../fonts/p22matadorregular.woff2") format("woff2"); /* используемый шрифт для заголовков */
+}
+
+body {   
+    /* Для боковой панели цвета */
+    --umbra-journal-color-button: #180729; /* цвета фона кнопок и строки поиска в боковом меню */
+    --umbra-journal-border-button: #f1f1b8; /* цвета бордера кнопкок и строки поиска в боковом меню */
+    --umbra-journal-button-active: #330f57; /* цвета фона кнопок в боковом меню при нажатии */
+    --umbra-journal-glowing-button: 0 0 3px #f1f1b8,
+                                         0 0 5px #d4c0b5; /* цвета свечения кнопок в боковом меню */
+    --umbra-journal-border-sidebar: #f3f3d2; /* цвет рамки в боковом меню */ 
+    --umbra-journal-glowing-sideheaders: 0 0 5px #f3f3d2,
+                                              0 0 10px #f1f1b8,
+                                              0 0 20px rgba(241, 241, 184, 0.5); /*свечение заголовков в боковом меню*/
+    /* Цвета текста */
+    --umbra-journal-header-color: #f3f3d2;          /* темно-темно-серый */
+    --umbra-journal-link-color: #f1f1b8;    /* цвет ссылок */
+    --umbra-journal-link-underline: linear-gradient(90deg, #f1f1b8, #f3f3d2, #f1f1b8); /* градиентное подчеркивание в ссылках */ 
+    --umbra-journal-glowing-all: #c6bf9b; /* свечение ввсего и сразу */
+    
+    /* Фон */
+    --umbra-journal-border-color: #e6d8a7;    /* цвет скролла и бордеров */
+    --umbra-journal-border-glowing: rgba(230, 216, 167, 0.7);
+    --umbra-journal-icon-back: #0f0117; /* цвет подложки под прозрачной иконкой */
+    --umbra-journal-back-style: rgba(17, 2, 24, 0.7); /* цвет фона, как в контейнерах, предметах */
+    --umbra-journal-background-color: #21201f; /* цвет фона, на всяк случай */
+    --umbra-journal-table-glowing: rgba(230, 216, 167, 0.1); /* подсветка строк таблицы */
+    --umbra-journal-background-texture-image: 
+        url(../assets/Sheets/UmbraBackground.png);
+    --umbra-journal-background-border-image: 
+        url(../assets/Sheets/UmbraBorder.png);
+    --umbra-journal-back-background:
+        url(../assets/Sheets/UmbraBack.png);       
+}
+
+/************************************************
+    Основные элементы
+************************************************/
+.sheet.umbra-journal .window-content {
+    background: none;
+}
+.sheet.journal-entry.umbra-journal .journal-entry-content {
+    border-image-slice: 165; /* На сколько частей "разрезать" рамку */
+    border-image-width: 40px; /* Толщина отображаемой рамки, созависима от разрезания */
+    border-image-repeat: stretch stretch; /* Растягивает изображение на всю доступную область.*/
+    border-image-source: var(--umbra-journal-background-border-image); /* рамка */
+    background-image: var(--umbra-journal-background-texture-image); /* Подложка */
+    background-size: 100% 100%; /* Жёсткое растяжение (может исказить пропорции) */
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-bottom: 20px; /* нижкий отступ, для стилей с нижним бордером */
+    color: var(--umbra-journal-header-color);
+  }
+
+/************************************************
+    Картинка в боковой панели
+************************************************/
+.sheet.journal-entry.umbra-journal .journal-sidebar {
+    position: relative;
+    color: var(--umbra-journal-header-color);
+} /* чтобы вывести элемент и можно было от него создать псевдоэлемент */
+.sheet.journal-entry.umbra-journal .journal-sidebar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+	background: none;
+    bottom: 0;
+    z-index: -1;
+	opacity: 0.7; /* Прозрачность картинки */
+}
+
+/* Отдельный псевдоэлемент только для звёзд */
+.sheet.journal-entry.umbra-journal .journal-sidebar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-image: 
+        /* Группа 1 (24 шт) */
+        radial-gradient(circle at 7% 18%, white 0%, transparent 1.8px),
+        radial-gradient(circle at 23% 42%, white 0%, transparent 2.3px),
+        radial-gradient(circle at 38% 75%, white 0%, transparent 1.5px),
+        radial-gradient(circle at 55% 13%, white 0%, transparent 2.7px),
+        radial-gradient(circle at 62% 88%, white 0%, transparent 1.2px),
+        radial-gradient(circle at 77% 34%, white 0%, transparent 2px),
+        radial-gradient(circle at 81% 67%, white 0%, transparent 3px),
+        radial-gradient(circle at 12% 53%, white 0%, transparent 1.7px),
+        radial-gradient(circle at 29% 29%, white 0%, transparent 2.5px),
+        radial-gradient(circle at 44% 61%, white 0%, transparent 1.9px),
+        radial-gradient(circle at 66% 9%, white 0%, transparent 2.1px),
+        radial-gradient(circle at 93% 47%, white 0%, transparent 1.4px),
+        radial-gradient(circle at 4% 27%, white 0%, transparent 2px),
+        radial-gradient(circle at 18% 35%, white 0%, transparent 1.7px),
+        radial-gradient(circle at 32% 68%, white 0%, transparent 2.4px),
+        radial-gradient(circle at 51% 22%, white 0%, transparent 1.6px),
+        radial-gradient(circle at 67% 92%, white 0%, transparent 1.3px),
+        radial-gradient(circle at 73% 41%, white 0%, transparent 2.2px),
+        radial-gradient(circle at 87% 59%, white 0%, transparent 1.8px),
+        radial-gradient(circle at 9% 48%, white 0%, transparent 2.6px),
+        radial-gradient(circle at 26% 33%, white 0%, transparent 1.5px),
+        radial-gradient(circle at 41% 54%, white 0%, transparent 2.3px),
+        radial-gradient(circle at 58% 17%, white 0%, transparent 1.9px),
+        radial-gradient(circle at 97% 38%, white 0%, transparent 2.1px),
+
+        /* Группа 2 (24 шт) */
+        radial-gradient(circle at 5% 82%, white 0%, transparent 2.8px),
+        radial-gradient(circle at 17% 24%, white 0%, transparent 1.3px),
+        radial-gradient(circle at 31% 57%, white 0%, transparent 2.4px),
+        radial-gradient(circle at 49% 31%, white 0%, transparent 1.6px),
+        radial-gradient(circle at 53% 79%, white 0%, transparent 3px),
+        radial-gradient(circle at 68% 22%, white 0%, transparent 1.8px),
+        radial-gradient(circle at 84% 63%, white 0%, transparent 2.2px),
+        radial-gradient(circle at 96% 15%, white 0%, transparent 1.5px),
+        radial-gradient(circle at 8% 45%, white 0%, transparent 2.6px),
+        radial-gradient(circle at 27% 68%, white 0%, transparent 1.7px),
+        radial-gradient(circle at 42% 27%, white 0%, transparent 2.9px),
+        radial-gradient(circle at 59% 54%, white 0%, transparent 1.1px),
+        radial-gradient(circle at 3% 65%, white 0%, transparent 2.5px),
+        radial-gradient(circle at 14% 19%, white 0%, transparent 1.4px),
+        radial-gradient(circle at 36% 49%, white 0%, transparent 2.1px),
+        radial-gradient(circle at 47% 36%, white 0%, transparent 1.8px),
+        radial-gradient(circle at 57% 84%, white 0%, transparent 2.7px),
+        radial-gradient(circle at 64% 28%, white 0%, transparent 1.6px),
+        radial-gradient(circle at 79% 71%, white 0%, transparent 2.3px),
+        radial-gradient(circle at 91% 9%, white 0%, transparent 1.9px),
+        radial-gradient(circle at 11% 52%, white 0%, transparent 2.4px),
+        radial-gradient(circle at 24% 73%, white 0%, transparent 1.7px),
+        radial-gradient(circle at 39% 22%, white 0%, transparent 2.8px),
+        radial-gradient(circle at 63% 47%, white 0%, transparent 1.5px),
+
+        /* Группа 3 (24 шт) */
+        radial-gradient(circle at 3% 71%, white 0%, transparent 2.3px),
+        radial-gradient(circle at 19% 39%, white 0%, transparent 1.9px),
+        radial-gradient(circle at 33% 16%, white 0%, transparent 2.7px),
+        radial-gradient(circle at 47% 83%, white 0%, transparent 1.4px),
+        radial-gradient(circle at 57% 48%, white 0%, transparent 2px),
+        radial-gradient(circle at 72% 77%, white 0%, transparent 3px),
+        radial-gradient(circle at 88% 29%, white 0%, transparent 1.6px),
+        radial-gradient(circle at 91% 62%, white 0%, transparent 2.4px),
+        radial-gradient(circle at 14% 55%, white 0%, transparent 1.8px),
+        radial-gradient(circle at 26% 23%, white 0%, transparent 2.5px),
+        radial-gradient(circle at 45% 68%, white 0%, transparent 1.2px),
+        radial-gradient(circle at 63% 37%, white 0%, transparent 2.1px),
+        radial-gradient(circle at 2% 89%, white 0%, transparent 2.6px),
+        radial-gradient(circle at 16% 31%, white 0%, transparent 1.5px),
+        radial-gradient(circle at 28% 44%, white 0%, transparent 2.2px),
+        radial-gradient(circle at 43% 19%, white 0%, transparent 1.9px),
+        radial-gradient(circle at 52% 93%, white 0%, transparent 2.7px),
+        radial-gradient(circle at 61% 26%, white 0%, transparent 1.7px),
+        radial-gradient(circle at 74% 58%, white 0%, transparent 2.3px),
+        radial-gradient(circle at 86% 11%, white 0%, transparent 1.8px),
+        radial-gradient(circle at 13% 64%, white 0%, transparent 2.4px),
+        radial-gradient(circle at 22% 37%, white 0%, transparent 1.6px),
+        radial-gradient(circle at 37% 52%, white 0%, transparent 2.1px),
+        radial-gradient(circle at 69% 43%, white 0%, transparent 1.9px);
+    opacity: 0.8;
+    animation: 
+        stars-twinkle 5s infinite ease-in-out,
+        stars-drift 20s infinite linear alternate;
+}
+
+@keyframes stars-twinkle {
+    0%, 100% { opacity: 0.5; }
+    50% { 
+        opacity: 0.9;
+        filter: brightness(1.2); 
+    }
+}
+.sheet.journal-entry.app.umbra-journal /* перекраска всего прозрачного "стекла" журнала*/
+{
+    background-color: transparent;
+    background-blend-mode: transparent;
+	background: var(--umbra-journal-back-background) repeat;
+}
+/************************************************
+    Шрифт и настройка заголовков
+************************************************/
+.sheet.journal-entry.umbra-journal .journal-entry-content .journal-page-header h1,
+.sheet.journal-entry.umbra-journal .journal-entry-content .journal-page-content h1 {
+    color: var(--umbra-journal-header-color); /* как у фаундри, на случай изменений в 13 версии*/
+    font-family: "umbraheading"; /* название шрифта (см.выше)*/
+	letter-spacing: 0; /* уменьшает межбуквенное расстроение*/
+    border-bottom: 2px dotted var(--umbra-journal-border-color); /* подчеркивание в заголовках*/
+}
+.sheet.journal-entry.umbra-journal .journal-entry-content .journal-page-content h2,
+.sheet.journal-entry.umbra-journal .journal-entry-content .journal-page-content h3,
+.sheet.journal-entry.umbra-journal .journal-page-header .journal-header {
+    color: var(--umbra-journal-header-color); /* как у фаундри, на случай изменений в 13 версии*/
+    font-family: "umbraheading"; /* название шрифта (см.выше)*/
+	letter-spacing: 0; /* уменьшает межбуквенное расстроение*/
+    border-bottom: 1px dotted var(--umbra-journal-border-color); /* подчеркивание в заголовках*/
+}    
+.sheet.journal-entry.umbra-journal .journal-entry-content .journal-page-content h4,
+.sheet.journal-entry.umbra-journal .journal-entry-content .journal-page-content h5,
+.sheet.journal-entry.umbra-journal .journal-entry-content .journal-page-content h6 {
+    color: var(--umbra-journal-header-color); /* как у фаундри, на случай изменений в 13 версии*/
+    font-family: "umbraheading"; /* название шрифта (см.выше)*/
+}
+
+/* самый большой (название журнала) заголовок */
+.sheet.umbra-journal .journal-entry-content .journal-header .title, 
+.sheet.umbra-journal.journal-entry-page 
+.window-content .journal-header .title {
+    color: var(--umbra-journal-header-color); /* как у фаундри, на случай изменений в 13 версии*/  
+    font-family: "umbraheading"; /* название шрифта (см.выше)*/
+    text-shadow: 
+        0 0 9px rgba(255, 245, 200, 0.8),  /* Ближний слой: яркое белое золото */
+        0 0 16px rgba(255, 240, 190, 0.6),   /* Средний слой: мягкое свечение */
+        0 0 24px rgba(255, 235, 180, 0.3);  /* Внешний слой: лёгкий ореол */
+    letter-spacing: 1px; /* уменьшает межбуквенное расстроение (заголовок онли)*/
+    background: none; /* фон подложки (заголовок онли)*/
+    border: none;
+}
+/* чтобы заголовок не залезал на шарики */
+.journal-sheet.umbra-journal .journal-header {
+    margin: 1rem 2.6rem 1rem 2.6rem;
+}
+/* свечение вокруг заголовка (названия журнала) */
+.sheet.journal-entry.umbra-journal input[type="text"]:focus,
+.sheet.journal-entry.umbra-journal input[type="text"]:hover {
+    box-shadow: none;
+}
+
+/************************************************
+    Боковое меню (свечение и кнопки)
+************************************************/
+.sheet.journal-entry.umbra-journal  .pages-list {
+    --color-border-highlight: var(--umbra-journal-border-sidebar); /* цвет рамки в боковом меню */
+}
+
+/* свечение текста в боковом меню */
+.sheet.journal-entry.umbra-journal .pages-list .page-heading .page-number:hover,
+.sheet.journal-entry.umbra-journal .pages-list .page-heading .page-title:hover {
+    text-shadow: var(--umbra-journal-glowing-sideheaders);
+}
+
+.sheet.journal-entry.umbra-journal .pages-list .directory-item {
+    position: relative;
+    z-index: 1;
+}
+
+.sheet.journal-entry.umbra-journal .pages-list .heading-link {
+    position: relative;
+    display: inline-block;
+    z-index: 1;;
+}
+/* свечение подменю */
+.sheet.journal-entry.umbra-journal .pages-list .heading-link:hover {
+    text-shadow: var(--umbra-journal-glowing-sideheaders);
+    z-index: 2;
+}
+
+/* верхняя панель (поиск и другое) */
+.sheet.journal-entry.umbra-journal .journal-sidebar .directory-header {
+    color: var(--umbra-journal-border-button);
+}
+/* верхняя панель кнопка первая (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.umbra-journal .journal-sidebar .directory-header .view-mode:hover {
+    text-shadow: var(--umbra-journal-glowing-button);   
+}
+/* верхняя панель кнопка вторая поиск (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.umbra-journal .journal-sidebar .directory-header .toggle-search-mode:hover {
+    text-shadow: var(--umbra-journal-glowing-button); 
+}
+/* верхняя панель окно поиска (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.umbra-journal .journal-sidebar .directory-header .header-search input {
+    background: var(--umbra-journal-color-button);
+	border: 1px solid;
+    border-color: var(--umbra-journal-border-button);
+    color: var(--umbra-journal-border-button);
+}
+/* верхняя панель окно поиска (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.umbra-journal .journal-sidebar .directory-header .header-search input:hover {
+    box-shadow: var(--umbra-journal-glowing-button); 
+}
+/* верхняя панель окно поиска (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.umbra-journal .journal-sidebar .directory-header .header-search input:focus {
+    box-shadow: var(--umbra-journal-glowing-button); 
+}
+/* верхняя панель кнопка четвертая (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.umbra-journal .journal-sidebar .directory-header .collapse-toggle:hover {
+    text-shadow: var(--umbra-journal-glowing-button);  
+}
+/* Кнопки */
+.sheet.journal-entry.umbra-journal .action-buttons button {
+    background: var(--umbra-journal-color-button);
+    color: var(--umbra-journal-border-button);
+	border: 1px solid;
+    border-color: var(--umbra-journal-border-button);
+}
+/* Кнопки при наведении */
+.sheet.journal-entry.umbra-journal .action-buttons button:hover {
+    box-shadow: var(--umbra-journal-glowing-button); 
+}
+/* Кнопки при нажатии */
+.sheet.journal-entry.umbra-journal .action-buttons button:active {
+    background: var(--umbra-journal-button-active);
+}
+/************************************************
+    Ссылки
+************************************************/
+.sheet.journal-entry.umbra-journal .journal-entry-content a:link {
+    color: var(--umbra-journal-link-color);
+    text-decoration: underline;
+    background-image: var(--umbra-journal-link-underline);
+    background-size: 0% 2px; /* подчеркивание скрыто */
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    transition: background-size 0.5s ease;
+    padding-bottom: 2px; /*чтобы текст не прыгал */
+}
+
+.sheet.journal-entry.umbra-journal .journal-entry-content a:hover {
+    color: var(--umbra-journal-glowing-all);
+    background-size: 100% 2px; /* для появления подчеркивания*/
+    text-shadow: 0 0 8px rgba(212, 192, 181, 0.5),
+                 0 0 12px rgba(169, 144, 80, 0.3);
+}
+/* Стили для ссылок в предметах (внутренние ссылки) */
+.sheet.journal-entry.umbra-journal a.content-link,
+.sheet.journal-entry.umbra-journal a.inline-roll {
+    background: rgba(0, 0, 0, 0.4); /* цвет на фоне предмета */
+    color: var(--umbra-journal-header-color);
+    padding: 1px 4px; /* отступы */
+    border: 1px solid var(--umbra-journal-link-color); /* рамка предмета */
+    border-radius: 2px;
+}
+
+/* Стили при наведении в предметах */
+.sheet.journal-entry.umbra-journal a.content-link:hover,
+.sheet.journal-entry.umbra-journal a.inline-roll:hover {
+    color: var(--umbra-journal-link-color); /* текст */
+    text-shadow: 0 0 3px var(--umbra-journal-glowing-all); /* свечение */
+}
+/************************************************
+    Скроллбар
+************************************************/
+.sheet.journal-entry.umbra-journal .scrollable {
+    scrollbar-color: var(--umbra-journal-border-color) transparent;
+    scrollbar-width: thin;
+}
+/************************************************
+    Кнопочка "редакировать"
+************************************************/
+.sheet.journal-entry.umbra-journal .editor-edit {
+    background-color: var(--umbra-journal-back-style);
+}
+/************************************************
+    !!!!ВСЯКИЕ СТИЛИ!!!!
+************************************************/
+/************************************************
+    Врезка текста (обтекание текстом текста)
+************************************************/
+.sheet.journal-entry.umbra-journal .wod-text-insert {
+  width: 45%;
+  padding: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+  background-color: var(--umbra-journal-back-style);
+  border: 3px groove var(--umbra-journal-border-color);
+  border-radius: 0 14px 0 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px var(umbra-journal-border-glowing);
+}
+/* Уголки (остаются поверх всего) */
+.sheet.journal-entry.umbra-journal .wod-text-insert::before,
+.sheet.journal-entry.umbra-journal .wod-text-insert::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 3px groove var(--umbra-journal-border-color);
+  z-index: 3; /* Поверх фона и текста */
+}
+
+.sheet.journal-entry.umbra-journal .wod-text-insert::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.sheet.journal-entry.umbra-journal .wod-text-insert::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.sheet.journal-entry.umbra-journal .wod-float-text-right {
+  float: right;
+  shape-outside: margin-box;
+}
+
+.sheet.journal-entry.umbra-journal .wod-float-text-left {
+  float: left;
+  shape-outside: margin-box;
+}
+/************************************************
+    Врезка текста c картинкой (обтекание текстом текста)
+************************************************/
+.sheet.journal-entry.umbra-journal .wod-text-insertimg {
+  width: 275px;
+  padding: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+  background-color: var(--umbra-journal-back-style);
+  border: 3px groove var(--umbra-journal-border-color);
+  border-radius: 0 14px 0 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px var(umbra-journal-border-glowing);
+}
+/* Стили для фонового изображения */
+.sheet.journal-entry.umbra-journal .wod-bg-image {
+  position: absolute;
+  width: 275px; /* Фиксированная ширина */
+  height: 100%; /* Заполняем высоту контейнера */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%); /* Центрирование по горизонтали */
+  object-fit: cover; /* Обрезаем лишнее */
+  object-position: center; /* Центр изображения в приоритете */
+  opacity: 0.25;
+  z-index: 0;
+  min-height: 100%; /* Защита от "сжатия" */
+}
+
+/* Контейнер для контента */
+.sheet.journal-entry.umbra-journal .wod-content {
+  position: relative;
+  z-index: 2; /* Поднимаем выше фона */
+  text-shadow: none; /* Улучшаем читаемость */
+}
+
+/* Уголки (остаются поверх всего) */
+.sheet.journal-entry.umbra-journal .wod-text-insertimg::before,
+.sheet.journal-entry.umbra-journal .wod-text-insertimg::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 3px groove var(--umbra-journal-border-color);
+  z-index: 3; /* Поверх фона и текста */
+}
+
+.sheet.journal-entry.umbra-journal .wod-text-insertimg::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.sheet.journal-entry.umbra-journal .wod-text-insertimg::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+/************************************************
+    Всплывающая подсказка
+************************************************/
+/* Контейнер для тултипа */
+.sheet.journal-entry.umbra-journal .wod-tooltip {
+  color: var(--umbra-journal-link-color); /* Оранжевый текст */
+  text-decoration: underline; 
+}
+.sheet.journal-entry.umbra-journal .wod-tooltip:hover {
+  color: var(--umbra-journal-link-color); /* текст */
+  text-shadow: 0 0 3px var(--umbra-journal-glowing-all); /* тень при наведении */
+}
+/************************************************
+    Рамка с иконкой
+************************************************/
+.sheet.journal-entry.umbra-journal .wod-square-frame {
+    position: relative;
+    display: block;
+    border: 3px groove var(--umbra-journal-border-color);
+    border-radius: 8px; /* Квадратные уголки у рамки */
+    padding: 10px 25px 10px 70px; /* Больше padding слева для картинки */
+    background-color: var(--umbra-journal-back-style); /* Полупрозрачный серый */
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 90%;
+    box-sizing: border-box;
+    min-height: 100px;
+    box-shadow: 0 0 10px var(umbra-journal-border-glowing);
+}
+
+.sheet.journal-entry.umbra-journal .wod-round-image {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 3px groove var(--umbra-journal-border-color);
+    border-radius: 50%; /* Круглая картинка */
+    left: -51px; /* Наезжает на рамку слева */
+    object-fit: cover;
+    top: 50%;
+    transform: translateY(-50%); /* Центрируем по вертикали */
+    background: var(--umbra-journal-icon-back); /* На случай если картинка прозрачная */
+    box-shadow: 0 0 10px var(umbra-journal-border-glowing);
+}
+
+/************************************************
+    Рамка с уголками
+************************************************/
+.sheet.journal-entry.umbra-journal .wod-square-frame :is(h1, h2, h3, h4, h5, h6) {
+    margin-top: 0 !important; 
+}
+.sheet.journal-entry.umbra-journal .wod-corner-frame {
+    position: relative;
+    border: 3px groove var(--umbra-journal-border-color);
+    border-radius: 0 14px 0 14px; /* скругляем правый верх и левый низ */
+    padding: 10px; /* отступы. Лучше 10, реально лучше */
+    background-color: var(--umbra-journal-back-style);
+    margin-right: 13px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    box-sizing: border-box;
+    overflow: hidden; /* Обрезаем уголки по границе рамки */
+    box-shadow: 0 0 10px var(umbra-journal-border-glowing);
+}
+
+/* Уголки внутри рамки */
+.sheet.journal-entry.umbra-journal .wod-corner-frame::before,
+.sheet.journal-entry.umbra-journal .wod-corner-frame::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 3px groove var(--umbra-journal-border-color);
+    z-index: -1; /* Убираем под контент */
+}
+
+/* Левый верхний угол */
+.sheet.journal-entry.umbra-journal .wod-corner-frame::before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+}
+
+/* Правый нижний угол */
+.sheet.journal-entry.umbra-journal .wod-corner-frame::after {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+}
+/************************************************
+    Цитаты
+************************************************/
+.sheet.journal-entry.umbra-journal .wod-blockquote {
+    border-left: 3px groove var(--umbra-journal-border-color); /* цвет и ширина левого бордера*/
+    border-right: 3px groove var(--umbra-journal-border-color); /* цвет и ширина правого бордера*/
+    background-color: var(--umbra-journal-back-style); /* фон, стандарт*/
+    padding: 12px 14px 12px 25px; /* отступы, чтобы кавычки на буквы не лезли */
+    margin: 1em 0; /* выравнивание */
+    position: relative;
+}
+/* Открывающая кавычка */
+.sheet.journal-entry.umbra-journal .wod-blockquote::before {
+    content: "“"; /* сама кавычка */
+    position: absolute; /* закрепление в позиции */
+    left: 4px; /* двигаем слева */
+    top: 1px; /* двигаем сверху */
+    font-size: 4em; /* размер */
+    line-height: 1; /* тоже размер кавычки, но иначе */
+    color: var(--umbra-journal-border-color); /* цвет кавычек */
+}
+
+.sheet.journal-entry.umbra-journal .wod-blockquote::after {
+    content: "”"; /* сама кавычка */
+    position: absolute; /* закрепление в позиции */
+    right: 10px; /* двигаем справа */
+    bottom: -32px; /* двигаем снизу */
+    font-size: 4em; /* размер */
+    line-height: 1; /* тоже размер кавычки, но иначе */
+    color: var(--umbra-journal-border-color); /* цвет кавычек */
+}
+
+/************************************************
+    Спойлер
+************************************************/
+.sheet.journal-entry.umbra-journal .wod-spoiler {
+    max-width: 96.5%;
+    margin: 1.5rem auto;
+    background: rgba(17, 2, 24, 0.1);
+    border: 1px groove var(--umbra-journal-border-color);
+    border-radius: 0 8px 0 8px;
+    box-shadow: 0 0 15px var(umbra-journal-border-glowing);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Заголовок  */
+.sheet.journal-entry.umbra-journal .wod-spoiler summary {
+    padding: 0.7rem 1.2rem;
+    color: var(--umbra-journal-header-color);
+    font-family: "umbraheading";
+    font-size: 22px;
+    cursor: pointer;
+    list-style: none;
+    font-weight: normal;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px groove var(--umbra-journal-border-color);
+    text-shadow: 0 0 8px rgba(230, 216, 167, 0.7);
+    z-index: 1;
+    background: rgba(17, 2, 24, 0.7); /* Основной цвет фона */
+}
+
+/* Псевдоэлемент для звёздного фона */
+.sheet.journal-entry.umbra-journal .wod-spoiler summary::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    
+    /* звёзды разного размера */
+    background: 
+        radial-gradient(circle at 20% 30%, white 0%, transparent 3px),
+        radial-gradient(circle at 80% 20%, white 0%, transparent 3px),
+		radial-gradient(circle at 98% 70%, white 0%, transparent 3px),
+		radial-gradient(circle at 80% 60%, white 0%, transparent 2px),
+		radial-gradient(circle at 87% 50%, white 0%, transparent 3px),
+		radial-gradient(circle at 95% 35%, white 0%, transparent 4px),
+		radial-gradient(circle at 50% 20%, white 0%, transparent 3px),
+		radial-gradient(circle at 75% 40%, white 0%, transparent 4px),
+		radial-gradient(circle at 55% 55%, white 0%, transparent 2px),
+		radial-gradient(circle at 49% 65%, white 0%, transparent 2px),
+		radial-gradient(circle at 65% 35%, white 0%, transparent 2px),
+        radial-gradient(circle at 40% 50%, white 0%, transparent 3px),
+        radial-gradient(circle at 60% 70%, white 0%, transparent 3px),
+        radial-gradient(circle at 10% 80%, white 0%, transparent 1.5px),
+        radial-gradient(circle at 90% 40%, white 0%, transparent 1.5px),
+        radial-gradient(circle at 30% 20%, white 0%, transparent 2px),
+        radial-gradient(circle at 70% 60%, white 0%, transparent 2px);
+    animation: stars-pulse 3s infinite alternate;
+}
+/* Анимация для звёзд */
+@keyframes stars-pulse {
+    from { opacity: 0.3; }
+    to { opacity: 0.7; }
+}
+
+/* Отключение конфликтующих псевдоэлементов */
+.sheet.journal-entry.umbra-journal .wod-spoiler summary::before {
+    content: none;
+}
+
+  /* Контент */
+.sheet.journal-entry.umbra-journal .wod-spoiler > *:not(summary) {
+    margin: 0;
+    padding: 1.2rem;
+    border: 1px groove var(--umbra-journal-border-color);
+    border-top: none;
+    background: var(--umbra-journal-back-style);
+    border-radius: 0 0 0 8px;
+  }
+/************************************************
+    Таблицы
+************************************************/
+  /* Основные параметры таблицы */
+.sheet.journal-entry.umbra-journal table.wod-table {
+    width: 100%;
+    max-width: 100%;
+    margin: 0.5rem auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 8px var(umbra-journal-border-glowing);
+    background: var(--umbra-journal-back-style);
+}
+/* Заголовок таблицы */
+.sheet.journal-entry.umbra-journal table.wod-table caption {
+    font-size: 1.2em; /* Размер текста в заголовке */
+}
+  /* Шапка с единым градиентом */
+.sheet.journal-entry.umbra-journal table.wod-table thead {
+    position: relative; 
+    border: 2px solid #d4c0b5;
+}
+.sheet.journal-entry.umbra-journal table.wod-table thead tr {
+    background: rgba(17, 2, 24, 0.7);
+    color: var(--umbra-journal-headers-color);
+    text-shadow: 0 0 8px rgba(230, 216, 167, 0.7);
+}
+
+  /* Заголовочные ячейки */
+.sheet.journal-entry.umbra-journal table.wod-table th {
+    padding: 12px 1px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    position: relative; 
+}
+  /* Звёзды в шапке */
+.sheet.journal-entry.umbra-journal table.wod-table thead::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 10% 15%, white 0%, transparent 2px),
+		radial-gradient(circle at 06% 47%, white 0%, transparent 2px),
+        radial-gradient(circle at 03% 35%, white 0%, transparent 3px),
+		radial-gradient(circle at 25% 35%, white 0%, transparent 3px),
+        radial-gradient(circle at 40% 20%, white 0%, transparent 1.5px),
+        radial-gradient(circle at 55% 45%, white 0%, transparent 2.5px),
+        radial-gradient(circle at 70% 30%, white 0%, transparent 2px),
+        radial-gradient(circle at 85% 50%, white 0%, transparent 3px),
+        radial-gradient(circle at 15% 70%, white 0%, transparent 1.8px),
+        radial-gradient(circle at 30% 85%, white 0%, transparent 2.2px),
+        radial-gradient(circle at 45% 65%, white 0%, transparent 1.5px),
+        radial-gradient(circle at 60% 80%, white 0%, transparent 2px),
+        radial-gradient(circle at 75% 60%, white 0%, transparent 3px),
+        radial-gradient(circle at 90% 75%, white 0%, transparent 1.7px),
+        radial-gradient(circle at 20% 50%, white 0%, transparent 2.5px),
+        radial-gradient(circle at 50% 10%, white 0%, transparent 2px),
+        radial-gradient(circle at 80% 15%, white 0%, transparent 1.5px),
+        radial-gradient(circle at 95% 90%, white 0%, transparent 3px);
+    opacity: 0.5;
+    animation: header-stars-pulse 3s infinite alternate;
+    z-index: 0;
+}
+
+@keyframes header-stars-pulse {
+    from { opacity: 0.3; }
+    to { opacity: 0.7; }
+}
+
+  /* Текст шапки на верхний слой */
+.sheet.journal-entry.umbra-journal table.wod-table thead th {
+    z-index: 1;
+}
+  /* строки */
+.sheet.journal-entry.umbra-journal table.wod-table tbody tr:nth-child(odd) {
+    background: rgba(17, 2, 24, 0.8);
+}
+
+.sheet.journal-entry.umbra-journal table.wod-table tbody tr:nth-child(even) {
+    background: rgba(243, 243, 210, 0.08); 
+}
+  /* Ячейки данных */
+.sheet.journal-entry.umbra-journal table.wod-table td {
+    padding: 5px 1px;
+    border: 1px groove var(--umbra-journal-border-color);
+    color: var(--umbra-journal-headers-color);
+}
+  /* Подсветка строк */
+.sheet.journal-entry.umbra-journal table.wod-table tbody tr:hover td {
+    background: var(--umbra-journal-table-glowing);
+    box-shadow: inset 0 0 10px var(umbra-journal-border-glowing);
+}
+
+/* Нижняя граница шапки */
+.sheet.journal-entry.umbra-journal table.wod-table thead {
+    border: 2px solid var(--umbra-journal-border-color);
+}
+/************************************************
+    Адаптивный скролл-контейнер
+************************************************/
+.sheet.journal-entry.umbra-journal .wod-scroll-container {
+  display: block;
+  overflow-y: auto;
+  max-width: 100%;
+  max-height: 200px;
+  background-color: var(--umbra-journal-back-style);
+  border: 3px solid var(--umbra-journal-border-color);
+  border-radius: 0 14px 0 14px; /* скругляем правый верх и левый низ */
+  padding: 5px;
+  overflow-x: hidden;
+  word-wrap: break-word;  /* Перенос длинных слов */
+  white-space: normal;    /* Корректный перенос строк */
+  box-sizing: border-box; /* Чтобы padding не влиял на размеры */
+  scrollbar-width: thin;
+  scrollbar-color: var(--umbra-journal-border-color) transparent;    
+}

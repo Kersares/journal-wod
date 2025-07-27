@@ -1,0 +1,586 @@
+@font-face {
+    font-family: "vampireheading";
+    src: url("../fonts/VampireRevisedCyr.woff2") format("woff2"); /* используемый шрифт для заголовков */
+}
+
+body {
+    /* Для боковой панели цвета */
+    --vampire-journal-color-button: #dcddda; /* цвета фона кнопок и строки поиска в боковом меню */
+    --vampire-journal-border-button: #ac0303; /* цвета бордера кнопкок и строки поиска в боковом меню */
+    --vampire-journal-button-active: #9b9d98; /* цвета фона кнопок в боковом меню при нажатии */
+    --vampire-journal-glowing-button: 0 0 3px rgba(255, 30, 30, 0.9),
+                                         0 0 6px rgba(200, 10, 10, 0.7); /* цвета свечения кнопок в боковом меню */
+    --vampire-journal-border-sidebar: #ac0303; /* цвет рамки в боковом меню */ 
+    --vampire-journal-glowing-sideheaders: 0 0 6px rgba(255, 30, 30, 0.9),
+                                              0 0 12px rgba(200, 10, 10, 0.7),
+                                              0 0 20px rgba(150, 0, 0, 0.5); /*свечение заголовков в боковом меню*/   
+    /* Цвета текста */
+    --vampire-journal-header-color: #191813;   /* темно-темно-серый */
+    --vampire-journal-link-color: #ac0303;    /* цвет ссылок */
+    --vampire-journal-link-underline: linear-gradient(90deg, #620101, #e90c0c, #620101); /* градиентное подчеркивание в ссылках */ 
+    --vampire-journal-headers-text: #e4dfdf; /* цвет текста на заголовках спойлеров и таблиц */
+    --vampire-journal-glowing-all: #d01717; /* свечение ввсего и сразу */
+    
+    /* Фон */
+    --vampire-journal-border-color: #5d142b;    /* цвет скролла и бордеров */
+    --vampire-journal-icon-back: #cdcccb; /* цвет подложки под прозрачной иконкой */
+    --vampire-journal-back-style: rgba(180, 180, 180, 0.4);  /* цвет фона, как в контейнерах, предметах */
+    --vampire-journal-background-color: #dedcda; /* цвет фона, на всяк случай */
+    --vampire-journal-headers-gradient: linear-gradient(110deg, 
+                                           #6a0011 0%,
+                                           #8f0018 30%,
+                                           #660018 70%,
+                                           #3d0915 100%); /* градиент для таблицы и спойлера */
+    --vampire-journal-headers-glare: linear-gradient(to bottom right,rgba(255,255,255,0) 45%,
+                                                                     rgba(255,255,255,0.2) 50%,
+                                                                     rgba(255,255,255,0) 55%);
+    --vampire-journal-table-glowing: rgba(106,0,17,0.08); /* подсветка строк таблицы */
+    --vampire-journal-background-texture-image: 
+        url(../assets/Sheets/VampBackground.webp);
+    --vampire-journal-background-border-image: 
+        url(../assets/Sheets/VampBorder.png);
+    --vampire-journal-sidepanel-background:
+        url(../assets/Sheets/VampIcon.png);   
+}
+
+/************************************************
+    Основные элементы
+************************************************/
+.sheet.journal-entry.vampire-journal .journal-entry-content {
+    border-image-slice: 165; /* На сколько частей "разрезать" рамку */
+    border-image-width: 39px; /* Толщина отображаемой рамки, созависима от разрезания */
+    border-image-repeat: stretch stretch; /* Растягивает изображение на всю доступную область.*/
+    border-image-source: var(--vampire-journal-background-border-image); /* рамка */
+    background-image: var(--vampire-journal-background-texture-image); /* Подложка */
+    padding-top: 20px;
+    padding-bottom: 15px;
+    background-repeat: repeat; /* как фон подкладывать. Тут "мостим" повторами*/
+  }
+
+/************************************************
+    Картинка в боковой панели
+************************************************/
+.sheet.journal-entry.vampire-journal .journal-sidebar {
+    position: relative;
+} /* чтобы вывести элемент и можно было от него создать псевдоэлемент */
+.sheet.journal-entry.vampire-journal .journal-sidebar::before { /* псевдоэлемент, чтобы добавить картинку*/
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; /* это для абсолюта, чтобы ток к родителю вязалось*/
+    background: var(--vampire-journal-sidepanel-background) center/contain no-repeat;
+    background-size: auto 70%; /* Высота не на всю панель, ширина автоматическая */
+	  opacity: 0.05; /* Прозрачность картинки */
+    z-index: -1;
+}
+/************************************************
+    Шрифт и настройка заголовков
+************************************************/
+.sheet.journal-entry.vampire-journal .journal-entry-content .journal-page-header h1,
+.sheet.journal-entry.vampire-journal .journal-entry-content .journal-page-content h1 {
+    color: var(--vampire-journal-header-color); /* как у фаундри, на случай изменений в 13 версии*/
+    font-family: "vampireheading"; /* название шрифта (см.выше)*/
+	letter-spacing: 0; /* увеличивает межбуквенное расстроение*/
+    border-bottom: 2px solid var(--vampire-journal-border-color); /* подчеркивание в заголовках*/
+}
+.sheet.journal-entry.vampire-journal .journal-entry-content .journal-page-content h2,
+.sheet.journal-entry.vampire-journal .journal-entry-content .journal-page-content h3,
+.sheet.journal-entry.vampire-journal .journal-page-header .journal-header {
+    color: var(--vampire-journal-header-color); /* как у фаундри, на случай изменений в 13 версии*/
+    font-family: "vampireheading"; /* название шрифта (см.выше)*/
+	letter-spacing: 0; /* увеличивает межбуквенное расстроение*/
+    border-bottom: 1px solid var(--vampire-journal-border-color); /* подчеркивание в заголовках*/
+}    
+.sheet.journal-entry.vampire-journal .journal-entry-content .journal-page-content h4,
+.sheet.journal-entry.vampire-journal .journal-entry-content .journal-page-content h5,
+.sheet.journal-entry.vampire-journal .journal-entry-content .journal-page-content h6 {
+    color: var(--vampire-journal-header-color); /* как у фаундри, на случай изменений в 13 версии*/
+    font-family: "vampireheading"; /* название шрифта (см.выше)*/
+	letter-spacing: 0; /* увеличивает межбуквенное расстроение*/
+  }
+.sheet.vampire-journal .journal-entry-content .journal-header .title, 
+.sheet.vampire-journal.journal-entry-page 
+.window-content .journal-header .title {
+    letter-spacing: 0; /* увеличивает межбуквенное расстроение (заголовок онли)*/
+    font-family: "vampireheading";
+    color: var(--vampire-journal-header-color);
+    background: rgba(0, 0, 0, 0.1); /* фон подложки (заголовок онли)*/
+}
+
+
+/* свечение вокруг заголовка (названия журнала) */
+.sheet.journal-entry.vampire-journal input[type="text"]:focus,
+.sheet.journal-entry.vampire-journal input[type="text"]:hover {
+    box-shadow: 0 0 10px var(--vampire-journal-glowing-all);
+}
+
+/************************************************
+    Боковое меню (свечение и кнопки)
+************************************************/
+.sheet.journal-entry.vampire-journal  .pages-list {
+    --color-border-highlight: var(--vampire-journal-border-sidebar); /* цвет рамки в боковом меню */
+}
+
+/* свечение текста в боковом меню */
+.sheet.journal-entry.vampire-journal .pages-list .page-heading .page-number:hover,
+.sheet.journal-entry.vampire-journal .pages-list .page-heading .page-title:hover {
+text-shadow: var(--vampire-journal-glowing-sideheaders);
+}
+
+.sheet.journal-entry.vampire-journal .pages-list .directory-item {
+    position: relative;
+    z-index: 1;
+}
+
+.sheet.journal-entry.vampire-journal .pages-list .heading-link {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+/* свечение подменю */
+.sheet.journal-entry.vampire-journal .pages-list .heading-link:hover {
+text-shadow: var(--vampire-journal-glowing-sideheaders);
+    z-index: 2;
+}
+
+/* верхняя панель (поиск и другое) */
+.sheet.journal-entry.vampire-journal .journal-sidebar .directory-header {
+    color: var(--vampire-journal-color-button);
+}
+/* верхняя панель кнопка первая (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.vampire-journal .journal-sidebar .directory-header .view-mode:hover {
+    text-shadow: var(--vampire-journal-glowing-button);   
+}
+/* верхняя панель кнопка вторая поиск (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.vampire-journal .journal-sidebar .directory-header .toggle-search-mode:hover {
+    text-shadow: var(--vampire-journal-glowing-button); 
+}
+/* верхняя панель окно поиска (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.vampire-journal .journal-sidebar .directory-header .header-search input {
+    background: var(--vampire-journal-color-button);
+	  border: 1px solid;
+    border-color: var(--vampire-journal-border-button);
+}
+/* верхняя панель окно поиска (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.vampire-journal .journal-sidebar .directory-header .header-search input:hover {
+    box-shadow: var(--vampire-journal-glowing-button); 
+}
+/* верхняя панель окно поиска (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.vampire-journal .journal-sidebar .directory-header .header-search input:focus {
+    box-shadow: var(--vampire-journal-glowing-button); 
+}
+/* верхняя панель кнопка четвертая (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.vampire-journal .journal-sidebar .directory-header .collapse-toggle:hover {
+    text-shadow: var(--vampire-journal-glowing-button);  
+}
+/* Кнопки */
+.sheet.journal-entry.vampire-journal .action-buttons button {
+    background: var(--vampire-journal-color-button);
+    color: var(--vampire-journal-header-color);
+    border: 1px solid;
+    border-color: var(--vampire-journal-border-button);
+}
+/* Кнопки при наведении */
+.sheet.journal-entry.vampire-journal .action-buttons button:hover {
+    box-shadow: var(--vampire-journal-glowing-button); 
+}
+/* Кнопки при нажатии */
+.sheet.journal-entry.vampire-journal .action-buttons button:active {
+    background: var(--vampire-journal-button-active);
+}
+/************************************************
+    Ссылки
+************************************************/
+.sheet.journal-entry.vampire-journal .journal-entry-content a:link {
+    color: var(--vampire-journal-link-color); /* цвет текста ссылки */
+    text-decoration: none;
+    background-image: var(--vampire-journal-link-underline); /* подчеркивание */
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    transition: background-size 0.5s;
+}
+.sheet.journal-entry.vampire-journal .journal-entry-content a:link:hover {
+    background-size: 100% 2px;
+}
+
+/* Стили для ссылок в предметах (внутренние ссылки) */
+.sheet.journal-entry.vampire-journal a.content-link,
+.sheet.journal-entry.vampire-journal a.inline-roll {
+    background: var(--vampire-journal-back-style); /* цвет на фоне предмета */
+    color: var(--vampire-journal-header-color);
+    padding: 1px 4px; /* отступы */
+    border: 1px solid #620101; /* рамка предмета */
+    border-radius: 2px;
+}
+
+/* Стили при наведении в предметах */
+.sheet.journal-entry.vampire-journal a.content-link:hover,
+.sheet.journal-entry.vampire-journal a.inline-roll:hover {
+    color: #620101; /* текст */
+    text-shadow: 0 0 3px #e90c0c; /* свечение */
+}
+/************************************************
+    Скроллбар
+************************************************/
+.sheet.journal-entry.vampire-journal .scrollable {
+    scrollbar-color: var(--vampire-journal-border-color) transparent;
+    scrollbar-width: thin;
+}
+/************************************************
+    Кнопочка "редакировать"
+************************************************/
+.sheet.journal-entry.vampire-journal .editor-edit {
+    background-color: var(--vampire-journal-back-style);
+}
+/************************************************
+    !!!!ВСЯКИЕ СТИЛИ!!!!
+************************************************/
+/************************************************
+    Врезка текста (обтекание текстом текста)
+************************************************/
+.sheet.journal-entry.vampire-journal .wod-text-insert {
+  width: 45%;
+  padding: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+  background-color: var(--vampire-journal-back-style);
+  border: 3px solid var(--vampire-journal-border-color);
+  border-radius: 0 14px 0 14px;
+  position: relative;
+  overflow: hidden;
+}
+/* Уголки (остаются поверх всего) */
+.sheet.journal-entry.vampire-journal .wod-text-insert::before,
+.sheet.journal-entry.vampire-journal .wod-text-insert::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 3px solid var(--vampire-journal-border-color);
+  z-index: 3; /* Поверх фона и текста */
+}
+
+.sheet.journal-entry.vampire-journal .wod-text-insert::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.sheet.journal-entry.vampire-journal .wod-text-insert::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.sheet.journal-entry.vampire-journal .wod-float-text-right {
+  float: right;
+  shape-outside: margin-box;
+}
+
+.sheet.journal-entry.vampire-journal .wod-float-text-left {
+  float: left;
+  shape-outside: margin-box;
+}
+/************************************************
+    Врезка текста c картинкой (обтекание текстом текста)
+************************************************/
+.sheet.journal-entry.vampire-journal .wod-text-insertimg {
+  width: 275px;
+  padding: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+  background-color: var(--vampire-journal-back-style);
+  border: 3px solid var(--vampire-journal-border-color);
+  border-radius: 0 14px 0 14px;
+  position: relative;
+  overflow: hidden;
+}
+/* Стили для фонового изображения */
+.sheet.journal-entry.vampire-journal .wod-bg-image {
+  position: absolute;
+  width: 275px; /* Фиксированная ширина */
+  height: 100%; /* Заполняем высоту контейнера */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%); /* Центрирование по горизонтали */
+  object-fit: cover; /* Обрезаем лишнее */
+  object-position: center; /* Центр изображения в приоритете */
+  opacity: 0.25;
+  z-index: 0;
+  min-height: 100%; /* Защита от "сжатия" */
+}
+
+/* Контейнер для контента */
+.sheet.journal-entry.vampire-journal .wod-content {
+  position: relative;
+  z-index: 2; /* Поднимаем выше фона */
+  text-shadow: 0 1px 2px rgba(255,255,255,0.7); /* Улучшаем читаемость */
+}
+
+/* Уголки (остаются поверх всего) */
+.sheet.journal-entry.vampire-journal .wod-text-insertimg::before,
+.sheet.journal-entry.vampire-journal .wod-text-insertimg::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 3px solid var(--vampire-journal-border-color);
+  z-index: 3; /* Поверх фона и текста */
+}
+
+.sheet.journal-entry.vampire-journal .wod-text-insertimg::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.sheet.journal-entry.vampire-journal .wod-text-insertimg::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+/************************************************
+    Всплывающая подсказка
+************************************************/
+/* Контейнер для тултипа */
+.sheet.journal-entry.vampire-journal .wod-tooltip {
+  color: var(--vampire-journal-link-color); 
+}
+.sheet.journal-entry.vampire-journal .wod-tooltip:hover {
+  color: #620101; /* текст */
+  text-shadow: 0 0 3px #e90c0c; /* тень при наведении */
+}
+/************************************************
+    Рамка с иконкой
+************************************************/
+.sheet.journal-entry.vampire-journal .wod-square-frame {
+    position: relative;
+    display: block;
+    border: 3px solid var(--vampire-journal-border-color);
+    border-radius: 8px; /* Квадратные уголки у рамки */
+    padding: 10px 25px 10px 70px; /* Больше padding слева для картинки */
+    background-color: var(--vampire-journal-back-style); /* Полупрозрачный серый */
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 90%;
+    box-sizing: border-box;
+    min-height: 100px;
+}
+
+.sheet.journal-entry.vampire-journal .wod-round-image {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 3px solid var(--vampire-journal-border-color);
+    border-radius: 50%; /* Круглая картинка */
+    left: -51px; /* Наезжает на рамку слева */
+    object-fit: cover;
+    top: 50%;
+    transform: translateY(-50%); /* Центрируем по вертикали */
+    background: var(--vampire-journal-icon-back); /* На случай если картинка прозрачная */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/************************************************
+    Рамка с уголками
+************************************************/
+.sheet.journal-entry.vampire-journal .wod-square-frame :is(h1, h2, h3, h4, h5, h6) {
+    margin-top: 0 !important;
+}
+.sheet.journal-entry.vampire-journal .wod-corner-frame {
+    position: relative;
+    border: 3px solid var(--vampire-journal-border-color);
+    border-radius: 0 14px 0 14px; /* скругляем правый верх и левый низ */
+    padding: 10px; /* отступы. Лучше 10, реально лучше */
+    background-color: var(--vampire-journal-back-style);
+    isolation: isolate;
+    margin-right: 13px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    box-sizing: border-box;
+    overflow: hidden; /* Обрезаем уголки по границе рамки */
+}
+
+/* Уголки внутри рамки */
+.sheet.journal-entry.vampire-journal .wod-corner-frame::before,
+.sheet.journal-entry.vampire-journal .wod-corner-frame::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--vampire-journal-border-color);
+    z-index: -1; /* Убираем под контент */
+}
+
+/* Левый верхний угол */
+.sheet.journal-entry.vampire-journal .wod-corner-frame::before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+}
+
+/* Правый нижний угол */
+.sheet.journal-entry.vampire-journal .wod-corner-frame::after {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+}
+/************************************************
+    Цитаты
+************************************************/
+.sheet.journal-entry.vampire-journal .wod-blockquote {
+    border-left: 5px solid var(--vampire-journal-border-color); /* цвет и ширина левого бордера*/
+	  border-right: 5px solid var(--vampire-journal-border-color); /* цвет и ширина правого бордера*/
+    background-color: var(--vampire-journal-back-style); /* фон, стандарт*/
+    padding: 12px 14px 12px 25px; /* отступы, чтобы кавычки на буквы не лезли */
+    margin: 1em 0; /* выравнивание */
+    position: relative;
+}
+/* Открывающая кавычка */
+.sheet.journal-entry.vampire-journal .wod-blockquote::before {
+    content: "“"; /* сама кавычка */
+    position: absolute; /* закрепление в позиции */
+    left: 4px; /* двигаем слева (в процентах для адаптивности) */
+    top: 1px; /* двигаем сверху (в процентах для адаптивности) */
+    font-size: 4em; /* размер */
+    line-height: 1; /* тоже размер кавычки, но иначе */
+    color: var(--vampire-journal-border-color); /* цвет кавычек */
+}
+
+.sheet.journal-entry.vampire-journal .wod-blockquote::after {
+    content: "”"; /* сама кавычка */
+    position: absolute; /* закрепление в позиции */
+    right: 10px; /* двигаем справа (в процентах для адаптивности) */
+    bottom: -32px; /* двигаем снизу (в процентах для адаптивности) */
+    font-size: 4em; /* размер */
+    line-height: 1; /* тоже размер кавычки, но иначе */
+    color: var(--vampire-journal-border-color); /* цвет кавычек */
+}
+
+/************************************************
+    Спойлер
+************************************************/
+.sheet.journal-entry.vampire-journal .wod-spoiler {
+    max-width: 96.5%;
+    margin: 1.5rem auto;
+    background: rgba(180, 180, 180, 0.1);
+    border: 1px solid var(--vampire-journal-border-color); 
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 8px 0 8px;
+  }
+
+.sheet.journal-entry.vampire-journal .wod-spoiler summary {
+    padding: 0.7rem 1.2rem;
+    background: var(--vampire-journal-headers-gradient);
+    color: var(--vampire-journal-headers-text);
+    font-family: "vampireheading";
+    font-size: 1.4em;
+	  letter-spacing: 1.5px;
+    cursor: pointer;
+    list-style: none;
+    font-weight: normal;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(74, 13, 35, 0.5); 
+  }
+
+  /* Блик*/
+.sheet.journal-entry.vampire-journal .wod-spoiler summary::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: var(--vampire-journal-headers-glare);
+    transform: rotate(30deg);
+    transition: transform 0.5s;
+  }
+
+.sheet.journal-entry.vampire-journal .wod-spoiler summary:hover::before {
+    transform: translateX(100%) rotate(30deg);
+  }
+
+  /* Контент */
+.sheet.journal-entry.vampire-journal .wod-spoiler > *:not(summary) {
+    margin: 0;
+    padding: 1.2rem;
+    border: 1px solid var(--vampire-journal-border-color);;
+    border-top: none;
+    background: var(--vampire-journal-back-style);
+    border-radius: 0 0 0 8px;
+  }
+/************************************************
+    Таблицы
+************************************************/
+  /* Основные параметры таблицы */
+.sheet.journal-entry.vampire-journal table.wod-table {
+    width: 100%;
+    max-width: 100%;
+    margin: 0.5rem auto;
+    border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: var(--vampire-journal-back-style);
+  }
+
+  /* Шапка с единым градиентом */
+.sheet.journal-entry.vampire-journal table.wod-table thead tr {
+    background: var(--vampire-journal-headers-gradient);
+    color: var(--vampire-journal-headers-text);
+  }
+
+  /* Заголовочные ячейки */
+.sheet.journal-entry.vampire-journal table.wod-table th {
+    padding: 12px 1px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    position: relative;
+  }
+  /* Ячейки данных */
+.sheet.journal-entry.vampire-journal table.wod-table td {
+    padding: 5px 1px;
+    border: 1px solid #9b8585;
+  }
+  /* Подсветка строк */
+.sheet.journal-entry.vampire-journal table.wod-table tbody tr:hover td {
+    background: var(--vampire-journal-table-glowing);
+    border-color: #9b8585;
+  }
+
+  /* Нижняя граница шапки */
+.sheet.journal-entry.vampire-journal table.wod-table thead {
+    border-bottom: 2px solid #3d0915;
+  }
+
+/************************************************
+    Адаптивный скролл-контейнер
+************************************************/
+.sheet.journal-entry.vampire-journal .wod-scroll-container {
+  display: block;
+  overflow-y: auto;
+  max-width: 100%;
+  max-height: 200px;
+  background-color: var(--vampire-journal-back-style);
+  border: 3px solid var(--vampire-journal-border-color);
+  border-radius: 0 14px 0 14px; /* скругляем правый верх и левый низ */
+  padding: 5px;
+  overflow-x: hidden;
+  word-wrap: break-word;  /* Перенос длинных слов */
+  white-space: normal;    /* Корректный перенос строк */
+  box-sizing: border-box; /* Чтобы padding не влиял на размеры */
+  scrollbar-width: thin;
+  scrollbar-color: var(--vampire-journal-border-color) transparent;    
+}
