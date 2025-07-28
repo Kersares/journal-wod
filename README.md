@@ -4,77 +4,79 @@
 
 </div>
 
-# Journal WoD
+# Journal WoD  
+This is a machine translation from Russian. Sorry, my English is very bad.
 
-Модуль Journal WoD - это модуль к Foundry VTT, созданный для системы [Foundry_WoD20](https://github.com/JohanFalt/Foundry_WoD20) и по мотивам World of Darkness (хотя модуль системонезависимый и может быть активирован на любой системе).
+The Journal WoD module is a module for Foundry VTT, created for the [Foundry_WoD20](https://github.com/JohanFalt/Foundry_WoD20) system and inspired by World of Darkness (though the module is system-agnostic and can be enabled on any system).  
 
-## 🎨 Что делает?
+## 🎨 What does it do?  
 
-Модуль добавляет сменные стили-листы для журнала внутри Foundry VTT, в соответствии с духом разных линеек Мира Тьмы (используется графика и стиль 1-4 редакций). В настоящее время в модуле есть стили журналов:
+The module adds interchangeable stylesheets for journals in Foundry VTT, matching the spirit of different World of Darkness editions (using graphics and styles from 1st to 4th editions). Currently, the module includes journal styles for:  
 
-* Общий WoD (для линейконезависимых записей)
-* Вампиров
-* Демонов
-* Магов
-* Оборотней
-* Охотников
-* Подменышей
-* Призраков
-* Востока (общий стиль для восточных Сородичей и Хенгейокай)
-* Дикого Запада (стилистика Оборотней этой эпохи)
-* Темных Веков (стилистика Вампиров этой эпохи)
-* И три темных темы: Медь, Умбра и Северное Сияние
-Помимо сменных листов-стилей модуль так же добавляет кнопку "Шаблоны" в редактор Журнала, под которой прячутся кастомные элементы для оформления записей: украшенная цитата, таблица, фреймы для вставок текста (и врезки его вертикально), возможности для добавления картинок под текст (с автоматической настройкой размера и прозрачности, так что с этим не нужно возится вручную), вставки картинок с обтеканием их текста, украшенный спойлер и другие мелочи, которых автору модуля очень сильно не хватало в базовом функционале.
+* General WoD (for edition-agnostic entries)  
+* Vampires  
+* Demons  
+* Mages  
+* Werewolves  
+* Hunters  
+* Changelings  
+* Wraiths  
+* The East (general style for Eastern Kindred and Hengeyokai)  
+* Wild West (styling for Werewolves of that era)  
+* Dark Ages (styling for Vampires of that era)  
+* Plus three dark themes: Cuprum, Umbra, and Aurora Borealis.  
 
-После загрузки модуля в компендиуме появится папка "Manual/Инструкция" в которой подробно и со скриншотами разобраны все фишки модуля описано, как ими пользоваться.
+In addition to interchangeable stylesheets, the module also adds a "Templates" button to the Journal Editor, containing custom elements for formatting entries: decorated quotes, tables, text frames (including vertical text inserts), options for adding images under text (with automatic sizing and transparency settings to avoid manual adjustments), text-wrapping images, decorated spoilers, and other small features that the module author really missed in the basic functionality.  
 
-## 🖼️ Скриншоты
-![Wild West](https://i.ibb.co/HTvVMVqZ/Wild-West-2.jpg) ![Vampire](https://i.ibb.co/39fLwQwm/Vampire-1.jpg)
-![East](https://i.ibb.co/HpM23mvG/East-1.jpg) ![Hunter](https://i.ibb.co/kVJyqjFy/Hunter-1.jpg)
+After loading the module, a "Manual/Instruction" folder will appear in the compendium, where all the features are explained in detail with screenshots.  
 
-## ⚡ Как установить?
+## 🖼️ Screenshots  
+![Wild West](https://i.ibb.co/HTvVMVqZ/Wild-West-2.jpg) ![Vampire](https://i.ibb.co/39fLwQwm/Vampire-1.jpg)  
+![East](https://i.ibb.co/HpM23mvG/East-1.jpg) ![Hunter](https://i.ibb.co/kVJyqjFy/Hunter-1.jpg)  
 
-Скопировав и вставив ссылку (тут будет ссылка) в стандартном меню Фаундри для установки модулей или скачав репозиторий и поместив его в папку modules.
+## ⚡ How to install?  
 
-## ❓ FAQ
+By copying and pasting the link (link will be here) into Foundry's standard module installation menu, or by downloading the repository and placing it in the modules folder.  
 
-### 🔹 Есть ли зависимости?
-Нет, модуль независим от других модулей и от систем (технически). Идейно, как уже писалось выше, модуль создавался для World of Darkness 1-4 редакций. На некоторых системах, в которых стандарный лист журнала Фаундри переделан, стили могут отображаться криво, увы. Для системы WoD5e ([WoD5E-Developers](https://github.com/WoD5E-Developers)) был добавлен отдельный фикс, чтобы стили журналов отображались так, как задумано.
+## ❓ FAQ  
 
-### 🔹 На какой версии Фаундри идет?
-Модуль писался на 12 версии Фаундри, однако протестирован на 13, и полностью с ней совместим, хотя использует еще старое api журнала.
+### 🔹 Are there any dependencies?  
+No, the module is independent of other modules and systems (technically). Conceptually, as mentioned above, it was created for World of Darkness 1st-4th editions. On some systems where Foundry's default journal sheet has been modified, the styles may display incorrectly. For the WoD5e system ([WoD5E-Developers](https://github.com/WoD5E-Developers)), a separate fix was added to ensure the journal styles display as intended.  
 
-### 🔹 Локализации?
-Да, модуль и инструкция переведены на английский язык (перевод машинный, так как автор английского не знает, простите, если есть желание сделать человеческий перевод - пишите!).
+### 🔹 Which Foundry version is it for?  
+The module was developed for Foundry v12 but has been tested on v13 and is fully compatible, though it still uses the old journal API.  
 
-### 🔹 Почему не все шрифты как в книгах?
-Потому что далеко не все они поддерживают кириллицу. На поиски шрифта для журнала вампиров ушло более 26 часов чистого времени, пока мой соавтор и коллега не психанул и не нарисовал кириллицу сам к официальному шрифту Vampire Revased Edition.
+### 🔹 Localizations?  
+Yes, the module and manual are translated into English (machine-translated, as the author doesn't know English—sorry! If you'd like to contribute a human translation, let me know!).  
 
-### 🔹 Зачем этот модуль вообще?
-Потому что автор посмотрел на систему DnD5e, позавидовал возможностям редактирования журнала там и захотел добавить похожих (и даже больше) фишек для WoD'а.
+### 🔹 Why aren't all fonts like in the books?  
+Because not all of them support Cyrillic. Finding a font for the Vampire journal took over 26 hours of pure time until my co-author and colleague snapped and manually drew Cyrillic characters for the official Vampire Revised Edition font.  
 
-### 🔹 Совместимости?
-Полностью не тестировалось, но, кажется, модуль никак не конфликтует с monks-enhanced-journal и так же спокойно уживается с модулями от AG (Adventure Guys), никак им не мешая.
+### 🔹 Why does this module even exist?  
+Because the author looked at the DnD5e system, envied its journal editing capabilities, and wanted to add similar (and even more) features for WoD.  
 
-### 🔹 Планируется ли добавление (вставить_желаемое)?
-Возможно. Напишите, подумаем, посмотрим)
+### 🔹 Compatibility?  
+Not fully tested, but the module doesn't seem to conflict with monks-enhanced-journal and coexists peacefully with AG (Adventure Guys) modules without interfering.  
 
-## 💜 Благодарности
+### 🔹 Will [insert_request] be added?  
+Maybe. Write to us, we'll think about it!  
 
-В первую очередь огромное спасибо моему соавтору Шеину за бессонные ночи, 26 часов поисков только вампирского шрифта (не считая всех остальных!) подбор цветов, здравую критику и вдохновение. Без него модуль не получился бы.
+## 💜 Credits  
 
-Кадату ([VK](https://vk.com/club199316981)) за идеи (лист-стиль "Умбра" - его задумка) и пинки в нужном направлении.
+First and foremost, huge thanks to my co-author Shein for sleepless nights, 26 hours spent searching just for the Vampire font (not counting all the others!), color selection, constructive criticism, and inspiration. Without him, this module wouldn't exist.  
 
-Братишке Никсу за помощь с графикой и дизайнерский взгляд.
+Kadath ([VK](https://vk.com/club199316981)) for ideas (the "Umbra" style sheet was his concept) and nudges in the right direction.  
 
-NeoSonic ([GitHub](https://github.com/porshkevich)) за написание js для встраивания кнопки в редактор для этого модуля и подробные объяснения, как с его кодом работать)
+Brother Nix for help with graphics and a designer's perspective.  
 
-А так же ребятам из Adventure Guys, которые никак не участвовали в разработке и о ней даже не знали, но чей модуль я увидел, очень захотел использовать на системе WoD, но, увы, он жестко привязан к системе DnD5e ([AG Module](https://gitlab.com/adventure-guys/ag-module)), так что пришлось изобретать свое.
+NeoSonic ([GitHub](https://github.com/porshkevich)) for writing the JS to integrate the button into the editor for this module and for detailed explanations on how to work with his code.  
 
-А так же модулую Custom Journal за авторством Fair Strides ([GitHub](https://github.com/Fair-Strides/FVTT-Custom-Journal-Theming/tree/v10-journals)), который очень помог мне начать и струтурировать мой модуль. Автор даже разрешила использовать ее js для смены листов, что, правда, не потребовалось, но это очень щедрый жест.
+Also, shoutout to the Adventure Guys team, who weren't involved in development and didn't even know about it, but whose module I saw and really wanted to use for WoD—unfortunately, it's tightly bound to DnD5e ([AG Module](https://gitlab.com/adventure-guys/ag-module)), so I had to create my own.  
 
-## ⚖️ Лицензия
+And credit to the Custom Journal module by Fair Strides ([GitHub](https://github.com/Fair-Strides/FVTT-Custom-Journal-Theming/tree/v10-journals)), which helped me get started and structure my module. The author even allowed me to use her JS for sheet switching, though it ultimately wasn't needed—a very generous gesture.  
 
-Я не особо в этом шарю, и закинул лицензию MIT, как в большинстве модулей для Foundry VTT.
+## ⚖️ License  
 
-Я не против и даже "за", если кто-то будет использовать эти наработки или создавать свои модули на основе этого, однако мне очень не хотелось бы, чтобы мои наработки продавались. Мне бы хотелось, чтобы модуль и его производные оставались бесплатными, доступными для всех =)
+I'm not an expert in this, so I used the MIT license, like most Foundry VTT modules.  
+
+I don't mind and even encourage others to use these developments or create their own modules based on this one. However, I'd really prefer if my work wasn't sold. I'd like the module and its derivatives to remain free and accessible to everyone =)  
