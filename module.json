@@ -20,6 +20,7 @@
       "flags": {}
     }
   ],
+  "url": "https://github.com/Kersares/journal-wod",
   "manifest": "https://raw.githubusercontent.com/Kersares/journal-wod/main/module.json",
   "download": "https://github.com/Kersares/journal-wod/releases/download/v1.0.0/journal-wod.zip",
   "esmodules": [
