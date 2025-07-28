@@ -78,3 +78,11 @@ NeoSonic ([GitHub](https://github.com/porshkevich)) за написание js �
 Я не особо в этом шарю, и закинул лицензию MIT, как в большинстве модулей для Foundry VTT.
 
 Я не против и даже "за", если кто-то будет использовать эти наработки или создавать свои модули на основе этого, однако мне очень не хотелось бы, чтобы мои наработки продавались. Мне бы хотелось, чтобы модуль и его производные оставались бесплатными, доступными для всех =)
+
+## Dark Pack Agreement
+
+Portions of the materials are the copyrights and trademarks of Paradox Interactive AB, and are used with permission. All rights reserved. For more information please visit [worldofdarkness.com](https://www.paradoxinteractive.com/games/world-of-darkness/about).
+
+Этот материал НЕ является официальным материалом World of Darkness.
+
+![logo](https://i.ibb.co/F4d8cHNm/darkpack-logo2-1.png)
