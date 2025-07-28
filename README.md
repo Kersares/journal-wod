@@ -86,3 +86,5 @@ I don't mind and even encourage others to use these developments or create their
 Portions of the materials are the copyrights and trademarks of Paradox Interactive AB, and are used with permission. All rights reserved. For more information please visit [worldofdarkness.com](https://www.paradoxinteractive.com/games/world-of-darkness/about).
 
 This material is NOT an official World of Darkness material.
+
+![logo](https://i.ibb.co/PKScwnm/darkpack-logo2.png)
