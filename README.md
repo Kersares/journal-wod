@@ -36,7 +36,7 @@ After loading the module, a "Manual/Instruction" folder will appear in the compe
 
 ## ⚡ How to install?  
 
-By copying and pasting the link (link will be here) into Foundry's standard module installation menu, or by downloading the repository and placing it in the modules folder.  
+By copying and pasting the link [https://raw.githubusercontent.com/Kersares/journal-wod/main/module.json](https://raw.githubusercontent.com/Kersares/journal-wod/main/module.json) into Foundry's standard module installation menu, or by downloading the repository and placing it in the modules folder.  
 
 ## ❓ FAQ  
 
