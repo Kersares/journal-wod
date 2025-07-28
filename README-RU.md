@@ -1,3 +1,9 @@
+<div align="center">
+  
+🌐 [English](README.md) ✦ [Русский](README-RU.md) 🌐
+
+</div>
+
 # Journal WoD
 
 Модуль Journal WoD - это модуль к Foundry VTT, созданный для системы [Foundry_WoD20](https://github.com/JohanFalt/Foundry_WoD20) и по мотивам World of Darkness (хотя модуль системонезависимый и может быть активирован на любой системе).
