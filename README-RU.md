@@ -34,7 +34,7 @@
 
 ## ⚡ Как установить?
 
-Скопировав и вставив ссылку (тут будет ссылка) в стандартном меню Фаундри для установки модулей или скачав репозиторий и поместив его в папку modules.
+Скопировав и вставив ссылку [https://raw.githubusercontent.com/Kersares/journal-wod/main/module.json](https://raw.githubusercontent.com/Kersares/journal-wod/main/module.json) в стандартном меню Фаундри для установки модулей или скачав репозиторий и поместив его в папку modules.
 
 ## ❓ FAQ
 
