@@ -87,4 +87,4 @@ Portions of the materials are the copyrights and trademarks of Paradox Interacti
 
 This material is NOT an official World of Darkness material.
 
-![logo](https://i.ibb.co/PKScwnm/darkpack-logo2.png)
+![logo](https://i.ibb.co/F4d8cHNm/darkpack-logo2-1.png)
