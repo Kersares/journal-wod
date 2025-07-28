@@ -80,3 +80,9 @@ And credit to the Custom Journal module by Fair Strides ([GitHub](https://github
 I'm not an expert in this, so I used the MIT license, like most Foundry VTT modules.  
 
 I don't mind and even encourage others to use these developments or create their own modules based on this one. However, I'd really prefer if my work wasn't sold. I'd like the module and its derivatives to remain free and accessible to everyone =)  
+
+## Dark Pack Agreement
+
+Portions of the materials are the copyrights and trademarks of Paradox Interactive AB, and are used with permission. All rights reserved. For more information please visit [worldofdarkness.com](https://www.paradoxinteractive.com/games/world-of-darkness/about).
+
+This material is NOT an official World of Darkness material.
