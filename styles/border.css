@@ -1,0 +1,312 @@
+/************************************************
+    Стиль рамки: Старое Фото
+************************************************/
+  /* Основной контейнер с обтеканием */
+  .wod-polaroid-float {
+    width: fit-content;
+    height: fit-content;
+    shape-outside: margin-box;
+    shape-margin: 15px;
+    padding: 40px;
+    padding-bottom: 20px;
+    margin: 25px;
+  }
+  
+  /* Варианты позиционирования */
+  .wod-polaroid-float.left {
+    float: left;
+    margin-right: 25px;
+  }
+  
+  .wod-polaroid-float.right {
+    float: right;
+    margin-left: 25px;
+  }
+
+  /* Эффекты наклона */
+  .wod-polaroid-float {
+    transform: rotate(var(--rotate-angle, 0deg));
+    transition: transform 0.5s ease;
+  }
+
+  /* Стили рамки */
+  .wod-polaroid-frame {
+    display: inline-block;
+    background: #ded8bd;
+    padding: 15px;
+    padding-bottom: 40px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .wod-polaroid-frame img {
+    filter: sepia(80%) contrast(110%);
+    transition: all 0.3s ease;
+    display: block;
+    width: 250px;
+    height: auto;
+    border: 1px solid #000;
+  }
+
+  .wod-polaroid-frame:hover img {
+    filter: sepia(50%) brightness(110%);
+    transform: scale(1.02);
+  }
+
+  .wod-polaroid-frame::after {
+    content: attr(data-caption);
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: var(--caption-font);
+    color: #666;
+  }
+/************************************************
+    Стиль рамки: Двойная линия
+************************************************/
+.wod-image-border-double {
+  border-width: 10px;        /* если увеличить, расстояние между линиями станет больше */
+  border-style: double;
+  border-color: black;
+  padding: 1px;
+}
+/************************************************
+    Стиль рамки: С тенью, одинарная
+************************************************/
+.wod-image-border-shadow {
+  border: 2px solid black;
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+}
+/************************************************
+    Стиль рамки: Со скругленными краями
+************************************************/
+.wod-image-border-rounded {
+  border: 3px solid black;
+  border-radius: 25px;
+}
+/************************************************
+    Стиль рамки: С черно-красным градиентом
+************************************************/
+.wod-image-border-gradient {
+  border: 4px solid;
+  border-image: linear-gradient(to left, #af1515, black) 1;
+}
+/************************************************
+    Стиль рамки: Винтажная (сепия)
+************************************************/
+.wod-image-border-vintage {
+  border: 8px solid #e0d0b1;
+  box-shadow: 0 0 10px rgba(139, 69, 19, 0.3);
+  padding: 3px;
+  background-color: #f5e7d0;
+}
+
+/************************************************
+    Стиль рамки: Неоновая голубая
+************************************************/
+.wod-image-border-neon-blue {
+  border: 2px solid #0ff;
+  box-shadow: 0 0 10px #0ff, 0 0 20px rgba(0, 255, 255, 0.3);
+}
+/************************************************
+    Стиль рамки: Неоновая голубая (анимация)
+************************************************/
+.wod-image-border-neon-blue-animated {
+  border: 2px solid #0ff;
+  box-shadow: 0 0 10px #0ff, 0 0 20px rgba(0, 255, 255, 0.3);
+  animation: neonFlickerBlue 1.5s infinite alternate;
+  background: rgba(0, 50, 50, 0.3);
+}
+
+@keyframes neonFlickerBlue {
+  0%, 19%, 21%, 23%, 25%, 100% { 
+    box-shadow: 0 0 10px #0ff, 0 0 20px rgba(0, 255, 255, 0.5); 
+  }
+  20%, 24% { box-shadow: none; }
+}
+
+/************************************************
+    Стиль рамки: Неоновая красная
+************************************************/
+.wod-image-border-neon-red {
+  border: 2px solid #ff3366;
+  box-shadow: 0 0 10px #ff3366, 0 0 20px rgba(255, 51, 102, 0.3);
+}
+/************************************************
+    Стиль рамки: Неоновая красная (анимация)
+************************************************/
+.wod-image-border-neon-red-animated {
+  border: 2px solid #ff3366;
+  box-shadow: 0 0 10px #ff3366, 0 0 20px rgba(255, 51, 102, 0.3);
+  animation: neonFlickerRed 1.5s infinite alternate;
+  background: rgba(50, 0, 20, 0.3);
+}
+
+@keyframes neonFlickerRed {
+  0%, 19%, 21%, 23%, 25%, 100% { 
+    box-shadow: 0 0 10px #ff3366, 0 0 20px rgba(255, 51, 102, 0.5); 
+  }
+  20%, 24% { box-shadow: none; }
+}
+/************************************************
+    Стиль рамки: Огненно-оранжевая неоновая
+************************************************/
+.wod-image-border-neon-fireorange {
+  border: 2px solid #ff5e00;
+  box-shadow: 0 0 10px #ff5e00, 0 0 20px rgba(255, 94, 0, 0.3);
+}
+
+/************************************************
+    Стиль рамки: Огненно-оранжевая неоновая (анимация)
+************************************************/
+.wod-image-border-neon-fireorange-animated {
+  border: 2px solid #ff5e00;
+  box-shadow: 0 0 10px #ff5e00, 0 0 20px rgba(255, 94, 0, 0.3);
+  animation: neonFlickerFireOrange 1.5s infinite alternate;
+  background: rgba(70, 20, 0, 0.3);
+}
+
+@keyframes neonFlickerFireOrange {
+  0%, 19%, 21%, 23%, 25%, 100% { 
+    box-shadow: 0 0 10px #ff5e00, 0 0 20px rgba(255, 94, 0, 0.5); 
+  }
+  20%, 24% { box-shadow: none; }
+}
+
+@keyframes neonFlickerOrange {
+  0%, 19%, 21%, 23%, 25%, 100% { 
+    box-shadow: 0 0 15px #ff4500, 0 0 25px rgba(255, 69, 0, 0.5); 
+  }
+  20%, 24% { box-shadow: none; }
+}
+/************************************************
+    Стиль рамки: Неоновая зеленая
+************************************************/
+.wod-image-border-neon-green {
+  border: 2px solid #33ff66;
+  box-shadow: 0 0 10px #33ff66, 0 0 20px rgba(51, 255, 102, 0.3);
+}
+/************************************************
+    Стиль рамки: Неоновая зеленая (анимация)
+************************************************/
+.wod-image-border-neon-green-animated {
+  border: 2px solid #33ff66;
+  box-shadow: 0 0 10px #33ff66, 0 0 20px rgba(51, 255, 102, 0.3);
+  animation: neonFlickerGreen 1.5s infinite alternate;
+  background: rgba(0, 50, 20, 0.3);
+}
+
+@keyframes neonFlickerGreen {
+  0%, 19%, 21%, 23%, 25%, 100% { 
+    box-shadow: 0 0 10px #33ff66, 0 0 20px rgba(51, 255, 102, 0.5); 
+  }
+  20%, 24% { box-shadow: none; }
+}
+
+/************************************************
+    Стиль рамки: Неоновая фиолетовая
+************************************************/
+.wod-image-border-neon-purple {
+  border: 2px solid #cc33ff;
+  box-shadow: 0 0 10px #cc33ff, 0 0 20px rgba(204, 51, 255, 0.3);
+}
+/************************************************
+    Стиль рамки: Неоновая фиолетовая (анимация)
+************************************************/
+.wod-image-border-neon-purple-animated {
+  border: 2px solid #cc33ff;
+  box-shadow: 0 0 10px #cc33ff, 0 0 20px rgba(204, 51, 255, 0.3);
+  animation: neonFlickerPurple 1.5s infinite alternate;
+  background: rgba(30, 0, 50, 0.3);
+}
+
+@keyframes neonFlickerPurple {
+  0%, 19%, 21%, 23%, 25%, 100% { 
+    box-shadow: 0 0 10px #cc33ff, 0 0 20px rgba(204, 51, 255, 0.5); 
+  }
+  20%, 24% { box-shadow: none; }
+}
+/************************************************
+    Стиль рамки: Грубая доска
+************************************************/
+.wod-image-border-wooden {
+  border: 6px solid #5d142b;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+  padding: 3px;
+}
+/************************************************
+    Стиль рамки: Сталь
+************************************************/
+.wod-image-border-spikes {
+  border: 4px solid #666;
+  border-image: linear-gradient(135deg, #ccc 25%, #999 50%, #ccc 75%) 1;
+  padding: 3px;
+}
+/************************************************
+    Стиль рамки: Объемная тень
+************************************************/
+.wod-image-border-volume {
+  border: 1px solid #000;
+  box-shadow: 3px 3px 0 #333, 6px 6px 0 #666;
+}
+/************************************************
+    Стиль рамки: кровавая аура (анимация пульсации)
+************************************************/
+.wod-image-border-pulseblood {
+  border: 3px solid #8b0000;
+  animation: bloodPulse 2s infinite alternate;
+  box-shadow: 0 0 10px #8b0000;
+}
+
+@keyframes bloodPulse {
+  0% { box-shadow: 0 0 5px #8b0000; }
+  100% { box-shadow: 0 0 20px #ff0000, 0 0 30px rgba(255, 0, 0, 0.4); }
+}
+/************************************************
+    Стиль рамки: Дыхание дракона (переливы огня)
+************************************************/
+.wod-image-border-dragonbreath {
+  border: 4px solid;
+  border-image: linear-gradient(45deg, #ff4500, #ff8c00, #ff4500) 1;
+  animation: fireGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes fireGlow {
+  0% { box-shadow: 0 0 10px #ff4500; }
+  100% { box-shadow: 0 0 25px #ff8c00, 0 0 40px rgba(255, 69, 0, 0.4); }
+}
+/************************************************
+    Стиль рамки: искажение реальности
+************************************************/
+
+.wod-image-border-reality {
+  border: 3px solid #4f4753;
+  animation: realityWarp 7s ease-in-out infinite;
+}
+
+@keyframes realityWarp {
+  0%, 100% { border-radius: 0; }
+  50% { 
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transform: scale(1.02);
+  }
+}
+/************************************************
+    Стиль рамки: инверсия цветов
+************************************************/
+.wod-image-border-vhs {
+  border: 3px solid #00ffff;
+  animation: vhsGlitch 3s infinite;
+  box-shadow: 
+    0 0 10px #ff00ff,
+    inset 0 0 10px #ff00ff;
+}
+
+@keyframes vhsGlitch {
+  0% { filter: hue-rotate(0); }
+  50% { filter: hue-rotate(90deg) contrast(200%); }
+  100% { filter: hue-rotate(0); }
+}

@@ -1,0 +1,606 @@
+@font-face {
+    font-family: "wraithheading";
+    src: url("../fonts/jollylodgercyrillic.woff2") format("woff2"); /* используемый шрифт для заголовков */
+}
+
+body {   
+    /* Для боковой панели цвета */
+    --wraith-journal-color-button: #d2e4e1; /* Светло-бирюзовый (как основной фон) */
+    --wraith-journal-border-button: #2a5c52; /* Бирюзовый металлик */
+    --wraith-journal-button-active: #5a8f80; /* Приглушенная бирюза */
+    --wraith-journal-glowing-button: 0 0 3px rgba(100, 200, 180, 0.9),
+                                     0 0 5px rgba(70, 160, 140, 0.7);
+    --wraith-journal-border-sidebar: #6d9c8f; /* Насыщенная бирюза */
+    --wraith-journal-glowing-sideheaders: 0 0 5px rgb(140, 220, 200),
+                                          0 0 10px rgb(100, 180, 160),
+                                          0 0 20px rgba(60, 120, 100, 0.5);
+    /* Цвета текста */
+    --wraith-journal-header-color: #191813;          /* темно-темно-серый */
+    --wraith-journal-link-color: #5a8f80;    /* цвет ссылок */
+    --wraith-journal-link-underline: linear-gradient(90deg, #6d9c8f, #a8c4bc,#6d9c8f); /* градиентное подчеркивание в ссылках */ 
+    --wraith-journal-headers-text: #e1e8e5; /* цвет текста на заголовках спойлеров и таблиц */
+    --wraith-journal-glowing-all: #6d9c8f; /* свечение ввсего и сразу */
+    
+    /* Фон */
+    --wraith-journal-border-color: #2a5c52;    /* цвет скролла и бордеров */
+    --wraith-journal-icon-back: #c1d6cf; /* цвет подложки под прозрачной иконкой */
+    --wraith-journal-back-style: rgba(150, 190, 175, 0.4); /* цвет фона, как в контейнерах, предметах */
+    --wraith-journal-background-color: #dedcda; /* цвет фона, на всяк случай */
+    --wraith-journal-headers-gradient: linear-gradient(110deg, #1b463b 0%,
+                                                               #3a6d5f 30%,
+                                                               #2a5c52 70%,
+                                                               #1b3630 100%); /* градиент для таблицы и спойлера */
+    --wraith-journal-headers-glare: linear-gradient(to bottom right,rgba(255, 255, 255, 0) 45%,
+                                                                    rgba(200, 230, 220, 0.3) 50%,
+                                                                    rgba(255, 255, 255, 0) 55%);
+    --wraith-journal-table-glowing: linear-gradient(rgba(58, 109, 95, 0.2),
+                                                    rgba(42, 92, 82, 0.3)); /* подсветка строк таблицы */
+    --wraith-journal-background-texture-image: 
+        url(../assets/Sheets/WrBackground.webp);
+    --wraith-journal-background-border-image: 
+        url(../assets/Sheets/WrBorder.png);
+    --wraith-journal-sidepanel-background:
+        url(../assets/Sheets/WrIcon.png);   
+}
+
+/************************************************
+    Основные элементы
+************************************************/
+.sheet.journal-entry.wraith-journal .journal-entry-content {
+    border-image-slice: 165; /* На сколько частей "разрезать" рамку */
+    border-image-width: 40px; /* Толщина отображаемой рамки, созависима от разрезания */
+    border-image-repeat: stretch stretch; /* Растягивает изображение на всю доступную область.*/
+    border-image-source: var(--wraith-journal-background-border-image); /* рамка */
+    background-image: var(--wraith-journal-background-texture-image); /* Подложка */
+    background-repeat: repeat; /* как фон подкладывать. Тут "мостим" повторами*/
+    padding-bottom: 1px; /* нижкий отступ, для стилей с нижним бордером */
+  }
+
+/************************************************
+    Картинка в боковой панели
+************************************************/
+.sheet.journal-entry.wraith-journal .journal-sidebar {
+    position: relative;
+} /* чтобы вывести элемент и можно было от него создать псевдоэлемент */
+.sheet.journal-entry.wraith-journal .journal-sidebar::before { /* псевдоэлемент, чтобы добавить картинку*/
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; /* это для абсолюта, чтобы ток к родителю вязалось*/
+    background: var(--wraith-journal-sidepanel-background) center/contain no-repeat;
+    background-size: auto 90%; /* Высота не на всю панель, ширина автоматическая */
+	opacity: 0.1; /* Прозрачность картинки */
+    z-index: -1;
+}
+/************************************************
+    Шрифт и настройка заголовков
+************************************************/
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-header h1,
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h1 {
+    color: var(--wraith-journal-header-color); /* как у фаундри, на случай изменений в 13 версии*/
+    font-family: "wraithheading"; /* название шрифта (см.выше)*/
+	letter-spacing: 1px; /* уменьшает межбуквенное расстроение*/
+    border-bottom: 2px solid var(--wraith-journal-border-color); /* подчеркивание в заголовках*/
+}
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h2,
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h3,
+.sheet.journal-entry.wraith-journal .journal-page-header .journal-header {
+    color: var(--wraith-journal-header-color); /* как у фаундри, на случай изменений в 13 версии*/
+    font-family: "wraithheading"; /* название шрифта (см.выше)*/
+	letter-spacing: 1px; /* уменьшает межбуквенное расстроение*/
+    border-bottom: 1px solid var(--wraith-journal-border-color); /* подчеркивание в заголовках*/
+}    
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h4,
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h5,
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h6 {
+    color: var(--wraith-journal-header-color); /* как у фаундри, на случай изменений в 13 версии*/
+    font-family: "wraithheading"; /* 
+	название шрифта (см.выше)*/
+	letter-spacing: 1px; /* уменьшает межбуквенное расстроение*/
+}
+
+/* самый большой (название журнала) заголовок */
+.sheet.wraith-journal .journal-entry-content .journal-header .title, 
+.sheet.wraith-journal.journal-entry-page 
+.window-content .journal-header .title {
+    color: var(--wraith-journal-header-color); /* как у фаундри, на случай изменений в 13 версии*/  
+    font-family: "wraithheading"; /* название шрифта (см.выше)*/
+    letter-spacing: 1px; /* уменьшает межбуквенное расстроение (заголовок онли)*/
+    background: rgba(146, 195, 189, 0.4); /* фон подложки (заголовок онли)*/
+
+}
+/* Размез заголовков, так как шрифт мельчит */
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h1 { font-size: 2.5em; }
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-header .title { font-size: 2.5em; }
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-header h1 { font-size: 2.5em; }
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h2 { font-size: 2.0em; }   /* h2 = 80% от h1 */
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h3 { font-size: 1.75em; }  /* h3 = 70% от h1 */
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h4 { font-size: 1.5em; }   /* h4 = 60% от h1 */
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h5 { font-size: 1.25em; }  /* h5 = 50% от h1 */
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h6 { font-size: 1.1em; }   /* h6 = 44% от h1 */
+
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h4,
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h5,
+.sheet.journal-entry.wraith-journal .journal-entry-content .journal-page-content h6 {
+    line-height: 1;        /* Фиксированный межстрочный интервал */
+    margin-top: 0.2em;     /* Отступ сверху */
+    margin-bottom: 0.5em;    /* Уменьшенный отступ снизу */
+    padding-bottom: 0.3em;   /* Дополнительный контроль */
+}
+    
+/* свечение вокруг заголовка (названия журнала) */
+.sheet.journal-entry.wraith-journal input[type="text"]:focus,
+.sheet.journal-entry.wraith-journal input[type="text"]:hover {
+    box-shadow: 0 0 10px var(--wraith-journal-glowing-all);
+}
+
+/************************************************
+    Боковое меню (свечение и кнопки)
+************************************************/
+.sheet.journal-entry.wraith-journal  .pages-list {
+    --color-border-highlight: var(--wraith-journal-border-sidebar); /* цвет рамки в боковом меню */
+}
+
+/* свечение текста в боковом меню */
+.sheet.journal-entry.wraith-journal .pages-list .page-heading .page-number:hover,
+.sheet.journal-entry.wraith-journal .pages-list .page-heading .page-title:hover {
+    text-shadow: var(--wraith-journal-glowing-sideheaders);
+}
+
+.sheet.journal-entry.wraith-journal .pages-list .directory-item {
+    position: relative;
+    z-index: 1;
+}
+
+.sheet.journal-entry.wraith-journal .pages-list .heading-link {
+    position: relative;
+    display: inline-block;
+    z-index: 1;;
+}
+/* свечение подменю */
+.sheet.journal-entry.wraith-journal .pages-list .heading-link:hover {
+    text-shadow: var(--wraith-journal-glowing-sideheaders);
+    z-index: 2;
+}
+
+/* верхняя панель (поиск и другое) */
+.sheet.journal-entry.wraith-journal .journal-sidebar .directory-header {
+    color: var(--wraith-journal-color-button);
+}
+/* верхняя панель кнопка первая (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.wraith-journal .journal-sidebar .directory-header .view-mode:hover {
+    text-shadow: var(--wraith-journal-glowing-button);   
+}
+/* верхняя панель кнопка вторая поиск (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.wraith-journal .journal-sidebar .directory-header .toggle-search-mode:hover {
+    text-shadow: var(--wraith-journal-glowing-button); 
+}
+/* верхняя панель окно поиска (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.wraith-journal .journal-sidebar .directory-header .header-search input {
+    background: var(--wraith-journal-color-button);
+	  border: 1px solid;
+    border-color: var(--wraith-journal-border-button);
+}
+/* верхняя панель окно поиска (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.wraith-journal .journal-sidebar .directory-header .header-search input:hover {
+    box-shadow: var(--wraith-journal-glowing-button); 
+}
+/* верхняя панель окно поиска (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.wraith-journal .journal-sidebar .directory-header .header-search input:focus {
+    box-shadow: var(--wraith-journal-glowing-button); 
+}
+/* верхняя панель кнопка четвертая (отдельно, потому что надо тени убрать нафиг)*/
+.sheet.journal-entry.wraith-journal .journal-sidebar .directory-header .collapse-toggle:hover {
+    text-shadow: var(--wraith-journal-glowing-button);  
+}
+/* Кнопки */
+.sheet.journal-entry.wraith-journal .action-buttons button {
+    background: var(--wraith-journal-color-button);
+    color: var(--wraith-journal-header-color);
+    border: 1px solid;
+    border-color: var(--wraith-journal-border-button);
+}
+/* Кнопки при наведении */
+.sheet.journal-entry.wraith-journal .action-buttons button:hover {
+    box-shadow: var(--wraith-journal-glowing-button); 
+}
+/* Кнопки при нажатии */
+.sheet.journal-entry.wraith-journal .action-buttons button:active {
+    background: var(--wraith-journal-button-active);
+}
+/************************************************
+    Ссылки
+************************************************/
+.sheet.journal-entry.wraith-journal .journal-entry-content a:link {
+    color: var(--wraith-journal-link-color);
+    text-decoration: none;
+    background-image: var(--wraith-journal-link-underline);
+    background-size: 0% 2px; /* подчеркивание скрыто */
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    transition: background-size 0.5s ease;
+    padding-bottom: 2px; /*чтобы текст не прыгал */
+}
+
+.sheet.journal-entry.wraith-journal .journal-entry-content a:hover {
+    color: var(--wraith-journal-glowing-all);
+    background-size: 100% 2px; /* для появления подчеркивания*/
+    text-shadow: 0 0 8px rgba(140, 180, 168, 0.5),
+                 0 0 12px rgba(109, 156, 143, 0.3);
+}
+/* Стили для ссылок в предметах (внутренние ссылки) */
+.sheet.journal-entry.wraith-journal a.content-link,
+.sheet.journal-entry.wraith-journal a.inline-roll {
+    background: rgba(168, 196, 188, 0.3); /* цвет на фоне предмета */
+    color: var(--wraith-journal-header-color);
+    padding: 1px 4px; /* отступы */
+    border: 1px solid var(--wraith-journal-link-color); /* рамка предмета */
+    border-radius: 2px;
+}
+
+/* Стили при наведении в предметах */
+.sheet.journal-entry.wraith-journal a.content-link:hover,
+.sheet.journal-entry.wraith-journal a.inline-roll:hover {
+    color: var(--wraith-journal-link-color); /* текст */
+    text-shadow: 0 0 3px var(--wraith-journal-glowing-all); /* свечение */
+}
+/************************************************
+    Скроллбар
+************************************************/
+.sheet.journal-entry.wraith-journal .scrollable {
+    scrollbar-color: var(--wraith-journal-border-color) transparent;
+    scrollbar-width: thin;
+}
+/************************************************
+    Кнопочка "редакировать"
+************************************************/
+.sheet.journal-entry.wraith-journal .editor-edit {
+    background-color: var(--wraith-journal-back-style);
+}
+/************************************************
+    !!!!ВСЯКИЕ СТИЛИ!!!!
+************************************************/
+/************************************************
+    Врезка текста (обтекание текстом текста)
+************************************************/
+.sheet.journal-entry.wraith-journal .wod-text-insert {
+  width: 45%;
+  padding: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+  background-color: var(--wraith-journal-back-style);
+  border: 3px solid var(--wraith-journal-border-color);
+  border-radius: 0 14px 0 14px;
+  position: relative;
+  overflow: hidden;
+}
+/* Уголки (остаются поверх всего) */
+.sheet.journal-entry.wraith-journal .wod-text-insert::before,
+.sheet.journal-entry.wraith-journal .wod-text-insert::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 3px solid var(--wraith-journal-border-color);
+  z-index: 3; /* Поверх фона и текста */
+}
+
+.sheet.journal-entry.wraith-journal .wod-text-insert::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.sheet.journal-entry.wraith-journal .wod-text-insert::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.sheet.journal-entry.wraith-journal .wod-float-text-right {
+  float: right;
+  shape-outside: margin-box;
+}
+
+.sheet.journal-entry.wraith-journal .wod-float-text-left {
+  float: left;
+  shape-outside: margin-box;
+}
+/************************************************
+    Врезка текста c картинкой (обтекание текстом текста)
+************************************************/
+.sheet.journal-entry.wraith-journal .wod-text-insertimg {
+  width: 275px;
+  padding: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+  background-color: var(--wraith-journal-back-style);
+  border: 3px solid var(--wraith-journal-border-color);
+  border-radius: 0 14px 0 14px;
+  position: relative;
+  overflow: hidden;
+}
+/* Стили для фонового изображения */
+.sheet.journal-entry.wraith-journal .wod-bg-image {
+  position: absolute;
+  width: 275px; /* Фиксированная ширина */
+  height: 100%; /* Заполняем высоту контейнера */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%); /* Центрирование по горизонтали */
+  object-fit: cover; /* Обрезаем лишнее */
+  object-position: center; /* Центр изображения в приоритете */
+  opacity: 0.25;
+  z-index: 0;
+  min-height: 100%; /* Защита от "сжатия" */
+}
+
+/* Контейнер для контента */
+.sheet.journal-entry.wraith-journal .wod-content {
+  position: relative;
+  z-index: 2; /* Поднимаем выше фона */
+  text-shadow: 0 1px 2px rgba(255,255,255,0.7); /* Улучшаем читаемость */
+}
+
+/* Уголки (остаются поверх всего) */
+.sheet.journal-entry.wraith-journal .wod-text-insertimg::before,
+.sheet.journal-entry.wraith-journal .wod-text-insertimg::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 3px solid var(--wraith-journal-border-color);
+  z-index: 3; /* Поверх фона и текста */
+}
+
+.sheet.journal-entry.wraith-journal .wod-text-insertimg::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.sheet.journal-entry.wraith-journal .wod-text-insertimg::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+/************************************************
+    Всплывающая подсказка
+************************************************/
+/* Контейнер для тултипа */
+.sheet.journal-entry.wraith-journal .wod-tooltip {
+  color: var(--wraith-journal-link-color); /* Оранжевый текст */
+}
+.sheet.journal-entry.wraith-journal .wod-tooltip:hover {
+  color: var(--wraith-journal-link-color); /* текст */
+  text-shadow: 0 0 3px var(--wraith-journal-glowing-all); /* тень при наведении */
+}
+/************************************************
+    Рамка с иконкой
+************************************************/
+.sheet.journal-entry.wraith-journal .wod-square-frame {
+    position: relative;
+    display: block;
+    border: 3px solid var(--wraith-journal-border-color);
+    border-radius: 8px; /* Квадратные уголки у рамки */
+    padding: 10px 25px 10px 70px; /* Больше padding слева для картинки */
+    background-color: var(--wraith-journal-back-style); /* Полупрозрачный серый */
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 90%;
+    box-sizing: border-box;
+    min-height: 100px;
+}
+
+.sheet.journal-entry.wraith-journal .wod-round-image {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 3px solid var(--wraith-journal-border-color);
+    border-radius: 50%; /* Круглая картинка */
+    left: -51px; /* Наезжает на рамку слева */
+    object-fit: cover;
+    top: 50%;
+    transform: translateY(-50%); /* Центрируем по вертикали */
+    background: var(--wraith-journal-icon-back); /* На случай если картинка прозрачная */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/************************************************
+    Рамка с уголками
+************************************************/
+.sheet.journal-entry.wraith-journal .wod-square-frame :is(h1, h2, h3, h4, h5, h6) {
+    margin-top: 0 !important;
+}
+.sheet.journal-entry.wraith-journal .wod-corner-frame {
+    position: relative;
+    border: 3px solid var(--wraith-journal-border-color);
+    border-radius: 0 14px 0 14px; /* скругляем правый верх и левый низ */
+    padding: 10px; /* отступы. Лучше 10, реально лучше */
+    background-color: var(--wraith-journal-back-style);
+    isolation: isolate;
+    margin-right: 13px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    box-sizing: border-box;
+    overflow: hidden; /* Обрезаем уголки по границе рамки */
+}
+
+/* Уголки внутри рамки */
+.sheet.journal-entry.wraith-journal .wod-corner-frame::before,
+.sheet.journal-entry.wraith-journal .wod-corner-frame::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--wraith-journal-border-color);
+    z-index: -1; /* Убираем под контент */
+}
+
+/* Левый верхний угол */
+.sheet.journal-entry.wraith-journal .wod-corner-frame::before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+}
+
+/* Правый нижний угол */
+.sheet.journal-entry.wraith-journal .wod-corner-frame::after {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+}
+/************************************************
+    Цитаты
+************************************************/
+.sheet.journal-entry.wraith-journal .wod-blockquote {
+    border-left: 5px solid var(--wraith-journal-border-color); /* цвет и ширина левого бордера*/
+	  border-right: 5px solid var(--wraith-journal-border-color); /* цвет и ширина правого бордера*/
+    background-color: var(--wraith-journal-back-style); /* фон, стандарт*/
+    padding: 12px 14px 12px 25px; /* отступы, чтобы кавычки на буквы не лезли */
+    margin: 1em 0; /* выравнивание */
+    position: relative;
+}
+/* Открывающая кавычка */
+.sheet.journal-entry.wraith-journal .wod-blockquote::before {
+    content: "“"; /* сама кавычка */
+    position: absolute; /* закрепление в позиции */
+    left: 4px; /* двигаем слева */
+    top: 1px; /* двигаем сверху */
+    font-size: 4em; /* размер */
+    line-height: 1; /* тоже размер кавычки, но иначе */
+    color: var(--wraith-journal-border-color); /* цвет кавычек */
+}
+
+.sheet.journal-entry.wraith-journal .wod-blockquote::after {
+    content: "”"; /* сама кавычка */
+    position: absolute; /* закрепление в позиции */
+    right: 10px; /* двигаем справа */
+    bottom: -32px; /* двигаем снизу */
+    font-size: 4em; /* размер */
+    line-height: 1; /* тоже размер кавычки, но иначе */
+    color: var(--wraith-journal-border-color); /* цвет кавычек */
+}
+
+/************************************************
+    Спойлер
+************************************************/
+.sheet.journal-entry.wraith-journal .wod-spoiler {
+    max-width: 96.5%;
+    margin: 1.5rem auto;
+    background: rgba(168, 196, 188, 0.15);
+    border: 1px solid var(--wraith-journal-border-color); 
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 8px 0 8px;
+  }
+
+.sheet.journal-entry.wraith-journal .wod-spoiler summary {
+    padding: 0.7rem 1.2rem;
+    background: var(--wraith-journal-headers-gradient);
+    color: var(--wraith-journal-headers-text);
+    font-family: "wraithheading";
+    font-size: 22px;
+    cursor: pointer;
+    list-style: none;
+    font-weight: normal;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #1b3630; 
+  }
+
+  /* Блик */
+.sheet.journal-entry.wraith-journal .wod-spoiler summary::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: var(--wraith-journal-headers-glare);
+    transform: rotate(30deg);
+    transition: transform 0.5s;
+  }
+
+.sheet.journal-entry.wraith-journal .wod-spoiler summary:hover::before {
+    transform: translateX(100%) rotate(30deg);
+  }
+
+  /* Контент */
+.sheet.journal-entry.wraith-journal .wod-spoiler > *:not(summary) {
+    margin: 0;
+    padding: 0.5em 1em;
+    border: none;
+    background: var(--wraith-journal-back-style);
+  }
+/************************************************
+    Таблицы
+************************************************/
+  /* Основные параметры таблицы */
+.sheet.journal-entry.wraith-journal table.wod-table {
+    width: 100%;
+    max-width: 100%;
+    margin: 0.5rem auto;
+    border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(109, 156, 143, 0.15);
+    background: var(--wraith-journal-back-style);
+  }
+
+  /* Шапка с единым градиентом */
+.sheet.journal-entry.wraith-journal table.wod-table thead tr {
+    background: var(--wraith-journal-headers-gradient);
+    color: var(--wraith-journal-headers-text);
+  }
+
+  /* Заголовочные ячейки */
+.sheet.journal-entry.wraith-journal table.wod-table th {
+    padding: 12px 1px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    position: relative;
+  }
+  /* Ячейки данных */
+.sheet.journal-entry.wraith-journal table.wod-table td {
+    padding: 5px 1px;
+    border: 1px solid #3a6d5f;
+  }
+  /* Подсветка строк */
+.sheet.journal-entry.wraith-journal table.wod-table tbody tr:hover td {
+    background: var(--wraith-journal-table-glowing);
+    border-color: #4a7f72;
+  }
+
+  /* Нижняя граница шапки */
+.sheet.journal-entry.wraith-journal table.wod-table thead {
+    border-bottom: 2px solid #2a5c52;
+  }
+/************************************************
+    Адаптивный скролл-контейнер
+************************************************/
+.sheet.journal-entry.wraith-journal .wod-scroll-container {
+  display: block;
+  overflow-y: auto;
+  max-width: 100%;
+  max-height: 200px;
+  background-color: var(--wraith-journal-back-style);
+  border: 3px solid var(--wraith-journal-border-color);
+  border-radius: 0 14px 0 14px; /* скругляем правый верх и левый низ */
+  padding: 5px;
+  overflow-x: hidden;
+  word-wrap: break-word;  /* Перенос длинных слов */
+  white-space: normal;    /* Корректный перенос строк */
+  box-sizing: border-box; /* Чтобы padding не влиял на размеры */
+  scrollbar-width: thin;
+  scrollbar-color: var(--wraith-journal-border-color) transparent;    
+}
